@@ -1,24 +1,23 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Brick.h"
-#include "Grid.h"
-#include "Header.h"
 using namespace sf;
+#include "Brick.h"
+#include "Header.h"
 
-class Rectangle : public Brick
+class Triangle:public Brick
 {
 private:
-	RectangleShape recshape;
+	CircleShape shape;
 
 public:
 	virtual void setBrick(float startX, float startY, float a, float b, int stt);
-	
+
 	virtual void setTexture(string textureName);
 	
-	virtual FloatRect getPosition();
+	FloatRect getPosition();
 
-	RectangleShape getShape();
+	CircleShape getShape();
 
 	virtual void draw(RenderWindow& window);
-};
 
+};
