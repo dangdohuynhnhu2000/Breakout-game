@@ -16,5 +16,7 @@ public:
 	void Level1();
 	void Level2();
 	void draw(RenderWindow& window);
+
+	void Reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool &check);
 };
 

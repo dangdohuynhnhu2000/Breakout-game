@@ -2,9 +2,10 @@
 
 void Grid::draw(RenderWindow& window)
 {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < shape.size(); i++)
 	{
-		shape[i]->draw(window);
+		if (shape[i]->getStatus() ==0)
+			shape[i]->draw(window);
 	}
 }
 
@@ -89,14 +90,14 @@ void Grid::Level1()
 	radius = 35;
 	posx = 650;
 	posy = 15;
-	for (int i = 0; i < 7; i++)
+	/*for (int i = 0; i < 7; i++)
 	{
 		posy += 80;
 		temp = new Triangle; 
 		temp->setBrick(posx, posy, 3, radius, 0);
 		temp->setTexture("red triangle.jpg");
 		shape.push_back(temp);
-	}
+	}*/
 }
 
 void Grid::Level2()
@@ -426,3 +427,24 @@ void Grid::Level2()
 	shape.push_back(temp);
 }
 
+void Grid::Reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool &check)
+{
+	vector <Brick *> ::iterator it;
+	for (it = shape.begin(); it != shape.end(); it++)
+	{
+		if ((*it)->getStatus() == 0)
+		{
+			bool collision = false;
+			collision = (*it)->reflex(ball, vx, vy, goingUp, goingDown, goingLeft, goingRight, check);
+			if (check == false)
+			{
+				goingLeft = true;
+			}
+			if (collision)
+			{
+				(*it)->setStatus(-1);
+			}
+		}
+		
+	}
+}

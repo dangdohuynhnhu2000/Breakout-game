@@ -20,5 +20,8 @@ public:
 	RectangleShape getShape();
 
 	virtual void draw(RenderWindow& window);
+
+	bool reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool &check);
+	// void Collision(Ball & ball, float &vx, float &vy);
 };
 

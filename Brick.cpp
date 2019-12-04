@@ -19,3 +19,18 @@ void Brick::draw(RenderWindow& window)
 {
 
 }
+
+bool Brick::reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool & check)
+{
+	return bool();
+}
+
+int Brick::getStatus()
+{
+	return status;
+}
+
+void Brick::setStatus(int _status)
+{
+	this->status = _status;
+}
