@@ -2,14 +2,14 @@
 
 //khoi tao vi tri kich thuoc va tuong
 Wall::Wall() {
-	Left.setPos({ 10,200 });
-	Left.setSize({ 10,600 });
-	Right.setPos({ 880,200 });
-	Right.setSize({ 10,600 });
-	Top.setPos({ 10, 200 });
-	Top.setSize({ 880,10 });
-	Bottom.setPos({ 10,800 });
-	Bottom.setSize({ 880,10 });
+	Left.setPos({ 30,120 });
+	Left.setSize({ 10,650 });
+	Right.setPos({ 860,120 });
+	Right.setSize({ 10,650 });
+	Top.setPos({ 30, 120 });
+	Top.setSize({ 840,10 });
+	Bottom.setPos({ 30,770 });
+	Bottom.setSize({ 840,10 });
 }
 
 Wall::~Wall() {

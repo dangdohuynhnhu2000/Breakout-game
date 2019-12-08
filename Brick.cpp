@@ -20,7 +20,7 @@ void Brick::draw(RenderWindow& window)
 
 }
 
-bool Brick::reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool & check)
+bool Brick::reflex(Ball & ball, float &vx, float &vy)
 {
 	return bool();
 }

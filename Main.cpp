@@ -18,7 +18,7 @@ int main() {
 
 	//Start Screen
 	//Option
-	float defaultSpeed = 0.31;
+	float defaultSpeed = 0.51;
 	float padSpeed = defaultSpeed - 0.01;
 	float ballSpeed = defaultSpeed;
 	int speed = 5;

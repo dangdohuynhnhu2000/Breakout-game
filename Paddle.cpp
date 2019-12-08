@@ -32,9 +32,6 @@ void Paddle::setColor(int a, int b, int c, int d) {
 	paddle.setFillColor(sf::Color(a, b, c, d));//doi mau
 }
 
-sf::Vector2f Paddle::getPos() {
-	return paddle.getPosition(); //lay vi tri
-}
 
 bool Paddle::isHitBall(Ball ball) {
 	//neu bong cham thanh truot thi tra ve true
@@ -42,6 +39,39 @@ bool Paddle::isHitBall(Ball ball) {
 		if (ball.getPos().x + ball.getRad() * 2 > paddle.getPosition().x && ball.getPos().x < paddle.getPosition().x + paddle.getSize().x) {
 			return true;
 		}
+	}
+	return false;
+}
+
+bool Paddle::reflex(Ball & ball, float &vx, float &vy)
+{
+	bool collision = false;
+
+	float x0 = getPosition().left;
+	float x1 = x0 + getPosition().width;
+	float y0 = getPosition().top;
+	float y1 = y0 + getPosition().height;
+
+	float bx0 = ball.getPosition().left;
+	float bx1 = bx0 + ball.getPosition().width;
+	float by0 = ball.getPosition().top;
+	float by1 = by0 + ball.getPosition().height;
+
+	if (by0 + vy <= y1 && by1 + vy >= y0)
+	{
+		if ((bx0 + vx <= x1 && bx1 + vx >= x0))
+		{
+			collision = true;
+		}
+	}
+
+	if (collision)
+	{
+		if (vy >= 0)
+		{
+			vy = -vy;
+		}
+		return true;
 	}
 	return false;
 }

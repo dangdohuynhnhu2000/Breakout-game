@@ -20,7 +20,7 @@ public:
 	virtual void setBrick(float startX, float startY, float a, float b, int stt) = 0;
 	virtual void setTexture(string textureName) = 0;
 	virtual void draw(RenderWindow& window) = 0;
-	virtual bool reflex(Ball & ball, float &vx, float &vy, bool & goingUp, bool & goingDown, bool & goingLeft, bool & goingRight, bool & check) = 0;
+	virtual bool reflex(Ball & ball, float &vx, float &vy) = 0;
 	virtual int getStatus();
 	virtual void setStatus(int _status);
 };

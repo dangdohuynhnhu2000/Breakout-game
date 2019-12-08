@@ -1,17 +1,15 @@
 #include "Header.h"
 
 //vi tri mac dinh
-void defaultPos(Paddle &paddle1, Paddle& paddle2, Ball& ball) {
-	paddle1.setPos({ 50, 460 });
-	paddle2.setPos({ 840, 460 });
-	ball.setPos({ 450, 500 });
+void defaultPos(Paddle &paddle1, Ball& ball) {
+	paddle1.setPos({ 440, 700});
+	ball.setPos({ 440, 500 });
 }
 //ve cac chi tiet
-void drawToWindow(sf::RenderWindow& window, Paddle paddle1, Paddle paddle2, Ball ball, Wall wall, sf::Text Exit) {
+void drawToWindow(sf::RenderWindow& window, Paddle paddle1, Ball ball, Wall wall, sf::Text Exit) {
 	window.clear(sf::Color(40, 40, 40));
 	window.draw(Exit);
 	paddle1.drawTo(window);
-	paddle2.drawTo(window);
 	wall.drawTo(window);
 	ball.drawTo(window);
 }

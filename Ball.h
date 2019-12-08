@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+using namespace std;
 #include <SFML\Graphics.hpp>
 using namespace sf;
 
@@ -32,4 +33,6 @@ public:
 	float getVy();
 
 	FloatRect getPosition();
+
+	FloatRect getGlobalBounds();
 };

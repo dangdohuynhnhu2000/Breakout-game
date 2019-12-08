@@ -21,8 +21,10 @@ public:
 
 	void setColor(int a, int b, int c, int d); //to mau
 
-	sf::Vector2f getPos(); //;lay vi tri
+	FloatRect getPosition();
 
 	bool isHitBall(Ball ball); //tra ve true neu hung duoc bong, nguoc lai tra ve false
+
+	bool reflex(Ball &ball, float &vx, float &vy);
 };
 
