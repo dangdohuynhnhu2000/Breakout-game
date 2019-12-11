@@ -5,33 +5,116 @@ void Rectangle::setBrick(float startX, float startY, float a, float b, int stt)
 {
 	position.x = startX;
 	position.y = startY;
-	recshape.setSize(Vector2f(a,b));
-	recshape.setPosition(position);
+	width = a;
+	height = b;
+	shape.setSize(Vector2f(width,height));
+	shape.setPosition(position);
 	status = stt;
 }
 
 void Rectangle::setTexture(string textureName)
 {
 	texture.loadFromFile(textureName);
-	recshape.setTexture(&texture);
+	shape.setTexture(&texture);
 }
 
 FloatRect Rectangle::getPosition()
 {
-	return recshape.getGlobalBounds();
+	return shape.getGlobalBounds();
+}
+
+Vector2f Rectangle::getPositionxy()
+{
+	return Vector2f(position.x, position.y);
+}
+
+int Rectangle::getStatus()
+{
+	return status;
+}
+
+void Rectangle::setPosition(float newPosx, float newPosy)
+{
+	position.x = newPosx;
+	position.y = newPosy;
+}
+
+void Rectangle::setNumber(int num)
+{
+	float x, y;
+	number = num;
+	font.loadFromFile("iCielPanton-Black.otf");
+	text.setString(to_string(number));
+	text.setCharacterSize(20);
+	text.setFont(font);
+	text.setFillColor(Color::Yellow);
+	//chinh cho doan text o giua hinh chu nhat
+	x = (width / 2 + getPosition().left) - (text.getGlobalBounds().width / 2);
+	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2);
+	text.setPosition({ x,y });
+}
+
+void Rectangle::setStatus(int stt)
+{
+	status = stt;
+}
+
+void Rectangle::setItemForBrick(int type)
+{
+	string name = to_string(type) + ".png";
+	item.setItem(position.x, position.y, name, type, -1);
 }
 
 RectangleShape Rectangle ::getShape()
 {
-	return recshape;
+	return shape;
 }
 
-void Rectangle::draw(RenderWindow& window)
+void Rectangle::draw(Paddle paddle, RenderWindow& window)
 {
-	window.draw(getShape());
+	if (status == 0)
+	{
+		window.draw(getShape());
+	}
+	else
+	{ 
+		if (item.getType() != 0)
+		{
+			if (item.getStatus() != -2)
+			{
+				item.setStatus(0);//cho item xuat hien khi vat the bien mat
+			}		
+			item.moveDown(0.2, 770);
+			if (isItemHitPaddle(paddle) != 0)//neu item cham paddle
+			{
+				item.setStatus(-2);//cho item bien mat vinh vien
+			}
+			if (item.getPosition().top > 770)//neu item di den cuoi man hinh thi se vinh vien bien mat
+			{
+				item.setStatus(-2);
+			}
+			item.draw(window);
+		}
+	}
+	if (number != 0)
+	{
+		window.draw(text);
+	}
 }
 
-bool Rectangle::reflex(Ball & ball, float &vx, float &vy)
+void Rectangle::moveLeftAndRight(float vx)
+{
+	position.x += vx;
+	shape.setPosition(position);
+}
+
+void Rectangle::moveDown(float vy)
+{
+	position.y += vy;
+	shape.setPosition(position);
+}
+
+bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
 {
 	bool collision = false;
 
@@ -76,7 +159,7 @@ bool Rectangle::reflex(Ball & ball, float &vx, float &vy)
 				}
 				else // va cham ben duoi
 				{
-					
+
 					vy = -vy;
 				}
 			}
@@ -123,7 +206,11 @@ bool Rectangle::reflex(Ball & ball, float &vx, float &vy)
 	return false;
 }
 
-FloatRect Paddle::getPosition()
+int Rectangle::isItemHitPaddle(Paddle paddle)
 {
-	return paddle.getGlobalBounds();
+	if (item.getPosition().intersects(paddle.getPosition()))
+	{
+		return item.getType();//dua ra so diem khi hung duoc item
+	}
+	return 0;
 }
