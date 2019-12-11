@@ -35,15 +35,15 @@ void Paddle::setColor(int a, int b, int c, int d) {
 
 bool Paddle::isHitBall(Ball ball) {
 	//neu bong cham thanh truot thi tra ve true
-	if (ball.getPos().y + ball.getRad() * 2 > paddle.getPosition().y && ball.getPos().y < paddle.getPosition().y + paddle.getSize().y) {
-		if (ball.getPos().x + ball.getRad() * 2 > paddle.getPosition().x && ball.getPos().x < paddle.getPosition().x + paddle.getSize().x) {
+	if (ball.getPos().y + ball.getRad() * 2 >= paddle.getPosition().y && ball.getPos().y <= paddle.getPosition().y + paddle.getSize().y) {
+		if (ball.getPos().x + ball.getRad() * 2 >= paddle.getPosition().x && ball.getPos().x <= paddle.getPosition().x + paddle.getSize().x) {
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Paddle::reflex(Ball & ball, float &vx, float &vy)
+bool Paddle::reflex(Ball & ball, float &vx, float &vy, bool &check)
 {
 	bool collision = false;
 
@@ -65,11 +65,60 @@ bool Paddle::reflex(Ball & ball, float &vx, float &vy)
 		}
 	}
 
-	if (collision)
+	if (collision && check)
 	{
-		if (vy >= 0)
+		if (bx1 + vx >= x0 && bx0 + vx <= x0) //xet 3 vi tri ben trai
 		{
-			vy = -vy;
+			if (by1 <= y0) // va cham phia tren
+			{
+				vy = -vy;
+			}
+			else if (by0 >= y1)
+			{
+				if (vy >= 0) // va cham ben trai
+				{
+					cout << "trai duoi" << endl;
+					vx = -vx;
+					check = false;
+				}
+				
+			}
+			else
+			{
+				cout << "trai giua" << endl;
+				check = false;
+				vx = -vx; // va cham ben trai 
+				cout << bx0 << " " << bx1 <<" "<< vx <<" " << x0 << " " << x1 << endl;
+				cout << by0 << " " << by1 << " "<<vy<< " " << y0 << " " << y1 << endl;
+			}
+		}
+		else if (bx0 + vx <= x1 && bx1 + vx >= x1) // xet 3 vi tri ben phai
+		{
+			if (by0 >= y1)
+			{
+				if (vy > 0) // va cham canh ben phai cua gach
+				{
+					check = false;
+					cout << "phai duoi" << endl;
+					vx = -vx;
+				}
+
+			}
+			else if (by1 <= y0) // va cham phia tren
+			{
+				
+					vy = -vy;
+			}
+			else
+			{
+				check = false;
+				cout << "phai giua" << endl;
+				vx = -vx; // va cham ben phai 
+			}
+		}
+		else
+		{
+			vy = -vy;// va cham tren hoac duoi;
 		}
 		return true;
 	}

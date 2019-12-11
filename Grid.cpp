@@ -4,8 +4,11 @@ void Grid::draw(RenderWindow& window)
 {
 	for (int i = 0; i < shape.size(); i++)
 	{
-		if (shape[i]->getStatus() ==0)
+		if (shape[i]->getStatus() != -1)
+		{
+			
 			shape[i]->draw(window);
+		}
 	}
 }
 
@@ -98,6 +101,7 @@ void Grid::Level1()
 		temp->setTexture("red triangle.jpg");
 		shape.push_back(temp);
 	}
+	level = 1;
 }
 
 void Grid::Level2()
@@ -425,6 +429,7 @@ void Grid::Level2()
 	temp->setBrick(posx, posy, 40, 40, 0);
 	temp->setTexture("red square.jpg");
 	shape.push_back(temp);
+	level = 2;
 }
 
 void Grid::Reflex(Ball & ball, float &vx, float &vy)
@@ -443,4 +448,22 @@ void Grid::Reflex(Ball & ball, float &vx, float &vy)
 		}
 		
 	}
+}
+
+int Grid::getlevel()
+{
+	return level;
+}
+
+void Grid::setStatus(vector <int> status)
+{
+	for (int i = 0;i < n;i++)
+	{
+		shape[i]->setStatus(status[i]);
+	}
+}
+
+vector <Brick *> Grid::getShape()
+{
+	return shape;
 }

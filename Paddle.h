@@ -25,6 +25,6 @@ public:
 
 	bool isHitBall(Ball ball); //tra ve true neu hung duoc bong, nguoc lai tra ve false
 
-	bool reflex(Ball &ball, float &vx, float &vy);
+	bool reflex(Ball &ball, float &vx, float &vy, bool &check);
 };
 
