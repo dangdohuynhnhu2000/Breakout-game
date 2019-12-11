@@ -1,6 +1,60 @@
+// These "include" code from the C++ library and SFML too
+#include "bat.h"
+#include "ball.h"
+#include "Paddle.h"
+#include "Brick.h"
+#include "Grid.h"
+#include "Hexagon.h"
+#include "Wall.h"
+#include "Menu.h"
+#include "Paddle.h"
+#include "Item.h"
 #include "Header.h"
+#include <SFML/Graphics.hpp>
+#include <iostream>
+using namespace std;
 
-int main() {
+// Avoid having to put sf in front of all the SFML classes and functions
+using namespace sf;
+
+
+int main()
+{
+	/*int windowWidth = 900;
+	int windowHeight = 900;
+
+	RenderWindow window;
+	Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);//lay vi tri giua man hinh
+	window.create(sf::VideoMode(900, 900), "Pong Pong Pong Pong", sf::Style::Titlebar | sf::Style::Close);//create window: size, title
+	window.setPosition(centerWindow);//dat vi tri mo len = centerWindow
+	window.setFramerateLimit(480);//limit framerate
+
+	Wall wall;
+	Grid grid;
+	Item item;
+	Paddle paddle({ 150,20 });
+	paddle.setPos({ 300,740 });
+	Ball ball(10);
+	ball.setPos({ 100,700 });
+	item.setItem(100, 100, "1.png", 1, 0);
+	float vy = .01;
+	grid.Level();
+
+	while (window.isOpen())
+	{
+		Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+				window.close();
+		}
+	   window.clear();
+	   ball.drawTo(window);
+	   wall.drawTo(window);
+	   paddle.drawTo(window);
+		window.display();
+		
+	}*/
 
 	sf::RenderWindow window;
 	sf::Vector2i centerWindow((sf::VideoMode::getDesktopMode().width / 2) - 445, (sf::VideoMode::getDesktopMode().height / 2) - 480);//lay vi tri giua man hinh
@@ -18,7 +72,7 @@ int main() {
 
 	//Start Screen
 	//Option
-	float defaultSpeed = 0.41;
+	float defaultSpeed = 0.51;
 	float padSpeed = defaultSpeed - 0.01;
 	float ballSpeed = defaultSpeed;
 	int speed = 5;
@@ -95,7 +149,8 @@ int main() {
 
 		window.clear();
 		mainScreen.drawTo(window);
-		
+
 		window.display();//hien thi ra man hinh menu
 	}
+	return 0;
 }

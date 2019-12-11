@@ -1,8 +1,9 @@
+
 #include "Header.h"
 
-void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float ballSpeed, float defaultSpeed, bool& playing, bool AIMode) {
+void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ballSpeed, float defaultSpeed, bool& playing, bool AIMode) {
 
-	
+
 	sf::Text Start;//cai dat thong bao dung man hinh
 	Start.setFont(font);
 	Start.setString("Press Space/Enter To Start");
@@ -29,10 +30,11 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 	//tao 4 buc tuong
 	Wall wall;
 
+	
 	//tao bong
-	Ball ball({ 8 });
+	Ball ball({ 10 });
 
-	//ai dat vi tri ban dau
+	//cai dat vi tri ban dau
 	defaultPos(paddle1, ball);
 
 	//khoi tao event
@@ -41,20 +43,25 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 	sf::Clock clock;
 
 	Grid grid;
-	//grid.Level2();
-	Texture tt;
-	tt.loadFromFile("red rectangle.jpg");
+	grid.Level1();
+	
 	float vx = ballSpeed;
 	float vy = ballSpeed;
 
 	int n = 0;
-	bool check = true;
-	SaveGame save;
-	save.readSaveGame(vx, vy, ball, paddle1, grid);
-	int test = 0;
-	while (playing == true) {
-		test++;
+
+	while (playing == true)
+	{
+		bool check = true;
+
+		//huong di chuyen cua bong, mac dinh ban dau di chuyen ve ben trai, huong thay doi lien tuc
+
 		float timeElapse = 3;
+		static bool goingUp = false;
+		static bool goingDown = false;
+		static bool goingLeft = true;
+		static bool goingRight = false;
+
 		//huong di chuyen cua may
 		//sau moi vong lap tu tra ve mac dinh
 		bool AIgoingUp = false;
@@ -68,15 +75,19 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && paddle1.getPosition().top > 690) {
 			paddle1.move({ 0, -padSpeed * timeElapse });
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (paddle1.getPosition().top  + paddle1.getPosition().height)  <720) {
-			paddle1.move({0, padSpeed * timeElapse });
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && (paddle1.getPosition().top + paddle1.getPosition().height) < 720) {
+			paddle1.move({ 0, padSpeed * timeElapse });
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && paddle1.getPosition().left > 50) {
-			paddle1.move({ -padSpeed / 3 * 2 * timeElapse , 0});
+			paddle1.move({ -padSpeed / 3 * 2 * timeElapse , 0 });
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && (paddle1.getPosition().left + paddle1.getPosition().width) < 850) {
 			paddle1.move({ padSpeed / 3 * 2 * timeElapse, 0 });
 		}
+
+		//Vong lap doi lenh
+		//Neu khong co lenh nao doi thuc hien thi tra ve false
+		//neu co lenh thi thuc hien
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 			case sf::Event::Closed: //click nut tat bang chuot
@@ -89,8 +100,9 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 					window.close();
 					exit(0);
 				case sf::Keyboard::Tab:
-					playing = false;// reset bong va tro ve menu
-					vx = vy = ballSpeed;
+					playing = goingUp = goingDown = goingRight = false;// reset bong va tro ve menu
+					goingLeft = true;
+					ballSpeed = defaultSpeed;// reset speed
 					defaultPos(paddle1, ball);//reset position
 					break;
 				case sf::Keyboard::P://pause game, hien thong bao
@@ -116,21 +128,17 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 							break;
 						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+							goingLeft = true;
+							goingDown = goingUp = goingRight = false;
 							playing = false;//tro ve main menu
 							break;
 						}
 					}
-				case sf::Keyboard::S:
-				{
-					SaveGame save;
-					save.saveGameOutFile(vx, vy, ball.getGlobalBounds().left, ball.getGlobalBounds().top, paddle1.getPosition().left, paddle1.getPosition().top, grid.getShape(), grid.getlevel());
 				}
-				}
-			
 			}
 		}
 
-		if (paddle1.reflex(ball, vx, vy, check))
+		if (paddle1.reflex(ball, vx, vy))
 		{
 			if (vx >= 0)
 			{
@@ -152,7 +160,6 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 
 		//doi huong khi va cham tren va duoi
 		if (wall.Top.isHitBall(ball) == true) {
-			
 			vy = -vy;
 		}
 
@@ -165,7 +172,8 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 		Score.setPosition(390, 110);
 
 
-		if (wall.Bottom.isHitBall(ball) == true) {
+		if (wall.Bottom.isHitBall(ball) == true)
+		{
 			scoreRight++;
 			Score.setString(std::to_string(scoreLeft) + ":" + std::to_string(scoreRight));
 			//ve cac chi tiet
@@ -178,9 +186,8 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 
 			//reset game
 			ballSpeed = defaultSpeed;
-			vx = vy = ballSpeed;
 			defaultPos(paddle1, ball);
-			check = true; // gioi han va cham ben hong 1 lan
+			goingDown = goingUp = false;
 			//tam dung doi nguoi choi san sang
 			while (window.waitEvent(event)) {
 				switch (event.type) {
@@ -203,25 +210,24 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 			}
 		}
 
-		
-
-		grid.Reflex(ball,vx, vy);
+		grid.Reflex(ball, vx, vy);
 		ball.move({ vx, vy });
-
+	
 		//Player score
 		if (wall.Left.isHitBall(ball) == true) {
 			vx = -vx;
 		}
-		
 
 		//Player score
 		if (wall.Right.isHitBall(ball) == true) {
 			vx = -vx;
 		}
+		
 		//ve chi tiet
 		drawToWindow(window, paddle1, ball, wall, Guide);
-		window.draw(Score);
-		grid.draw(window);
+		//window.draw(Score);
+		grid.draw(paddle1, window);
 		window.display();//hien thi ra man hinh
+		
 	}
 }

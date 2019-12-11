@@ -6,6 +6,9 @@ void Triangle::setBrick(float startX, float startY, float a, float b, int stt)
 {
 	position.x = startX;
 	position.y = startY;
+	height = 1.5 * b;
+	baseSize = a;
+	radius = b;
 	shape.setPointCount(a);
 	shape.setRadius(b);
 	shape.setPosition(position);
@@ -23,17 +26,84 @@ FloatRect Triangle::getPosition()
 	return shape.getGlobalBounds();
 }
 
+Vector2f Triangle::getPositionxy()
+{
+	return Vector2f(position.x, position.y);
+}
+
+int Triangle::getStatus()
+{
+	return status;
+}
+
+void Triangle::setPosition(float newPosx, float newPosy)
+{
+	position.x = newPosx;
+	position.y = newPosy;
+}
+
+void Triangle::setNumber(int num)
+{
+	float x, y;
+	number = num;
+	font.loadFromFile("iCielPanton-Black.otf");
+	text.setString(to_string(number));
+	text.setCharacterSize(20);
+	text.setFont(font);
+	text.setFillColor(Color::Yellow);
+	//chinh cho text nam o giua hinh tam giac
+	x = (baseSize / 2 + getPosition().left) - (text.getGlobalBounds().width / 2) + radius/1.2;
+	y = (height / 2 + getPosition().top) - (text.getGlobalBounds().height / 2);
+	text.setPosition({ x,y });
+}
+
+void Triangle::setStatus(int stt)
+{
+	status = stt;
+}
+
+void Triangle::setItemForBrick(int type)
+{
+	if (type == 0)//khong co vat pham nao ca
+	{
+
+	}
+	else if (type == 1)//vat pham loai 1
+	{
+		item.setItem(position.x, position.y, "1.png", 1, -1);
+	}
+}
+
 CircleShape Triangle::getShape()
 {
 	return shape;
 }
 
-void Triangle::draw(RenderWindow& window)
+void Triangle::draw(Paddle paddle, RenderWindow& window)
 {
-	window.draw(getShape());
+	if (status == 0)
+	{
+		window.draw(getShape());
+	}
+	if (number != 0)
+	{
+		window.draw(text);
+	}
 }
 
-bool Triangle::reflex(Ball & ball, float &vx, float &vy)
+void Triangle::moveLeftAndRight(float vx)
+{
+	position.x += vx;
+	shape.setPosition(position);
+}
+
+void Triangle::moveDown(float vy)
+{
+	position.y += vy;
+	shape.setPosition(position);
+}
+
+bool Triangle::reflex(Ball& ball, float& vx, float& vy)
 {
 	if (shape.getGlobalBounds().intersects(ball.getGlobalBounds()))
 	{
@@ -97,22 +167,27 @@ bool Triangle::reflex(Ball & ball, float &vx, float &vy)
 		{
 			if (vx >= 0) // va cham ben trai
 			{
-				float v = sqrt(vx*vx + vy * vy);
+				float v = sqrt(vx * vx + vy * vy);
 				float pi = 3.141592654;
 				float goc = atan((float)fabs(vy) / fabs(vx));
-				vx = -cos(pi / 6 - goc)*v;
-				vy = sin(pi / 6 - goc)*v;
+				vx = -cos(pi / 6 - goc) * v;
+				vy = sin(pi / 6 - goc) * v;
 			}
 			else // va cham ben phai
 			{
-				float v = sqrt(vx*vx + vy * vy);
+				float v = sqrt(vx * vx + vy * vy);
 				float pi = 3.141592654;
 				float goc = atan((float)fabs(vy) / fabs(vx));
-				vx = -cos(pi / 6 - goc)*v;
-				vy = sin(pi / 6 - goc)*v;
+				vx = -cos(pi / 6 - goc) * v;
+				vy = sin(pi / 6 - goc) * v;
 			}
 		}
 		return true;
 	}
 	return false;
+}
+
+int Triangle::isItemHitPaddle(Paddle paddle)
+{
+	return 0;
 }
