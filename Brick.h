@@ -2,6 +2,8 @@
 #include <string>
 #include "Ball.h"
 #include "Item.h"
+#include "Bullet.h"
+#include "GunMode.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 using namespace sf;
@@ -29,11 +31,13 @@ public:
 	virtual void setNumber(int num) = 0;
 	virtual void setStatus(int stt) = 0;
 	virtual void setItemForBrick(int type) = 0;
-	virtual void draw(Paddle paddle, RenderWindow& window) = 0;
+	virtual void draw(Paddle& paddle, RenderWindow& window) = 0;
 
 	virtual void moveLeftAndRight(float vx) = 0;
 	virtual void moveDown(float vy) = 0;
 	virtual bool reflex(Ball& ball, float& vx, float& vy) = 0;
 	virtual int isItemHitPaddle(Paddle paddle) = 0;
+	virtual bool isHitBullet(Bullet bullet) = 0;
+
 };
 

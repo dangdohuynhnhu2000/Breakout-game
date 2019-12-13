@@ -43,7 +43,15 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 	sf::Clock clock;
 
 	Grid grid;
-	grid.Level1();
+	float vt = 0.5;
+	float windowHeight = 900; 
+	grid.Level2();
+
+	GunMode gun;
+	gun.setAmountOfBullets(5);
+	int limitGunMode = 0;//gioi han ma tai do ta tat che do GunMode
+
+	bool isOnGunMode = false;//cho biet co dang o che do gunMode hay khong
 	
 	float vx = ballSpeed;
 	float vy = ballSpeed;
@@ -178,6 +186,7 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 			Score.setString(std::to_string(scoreLeft) + ":" + std::to_string(scoreRight));
 			//ve cac chi tiet
 			drawToWindow(window, paddle1, ball, wall, Guide);
+			grid.draw(paddle1, window);
 			window.draw(Score);
 			window.draw(Start);
 			result(scoreLeft, scoreRight, Result);
@@ -209,7 +218,6 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 				}
 			}
 		}
-
 		grid.Reflex(ball, vx, vy);
 		ball.move({ vx, vy });
 	
@@ -227,7 +235,11 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 		drawToWindow(window, paddle1, ball, wall, Guide);
 		//window.draw(Score);
 		grid.draw(paddle1, window);
-		window.display();//hien thi ra man hinh
-		
+		if (paddle1.isOnGunMode == true)
+		{
+			gun.turnOnGunMode(window, paddle1);
+		}
+		grid.hitBullet(gun);
+		window.display();//hien thi ra man hinh		
 	}
 }

@@ -64,14 +64,8 @@ void Triangle::setStatus(int stt)
 
 void Triangle::setItemForBrick(int type)
 {
-	if (type == 0)//khong co vat pham nao ca
-	{
-
-	}
-	else if (type == 1)//vat pham loai 1
-	{
-		item.setItem(position.x, position.y, "1.png", 1, -1);
-	}
+	string name = to_string(type) + ".png";
+	item.setItem(position.x, position.y, name, type, -1);
 }
 
 CircleShape Triangle::getShape()
@@ -79,11 +73,33 @@ CircleShape Triangle::getShape()
 	return shape;
 }
 
-void Triangle::draw(Paddle paddle, RenderWindow& window)
+void Triangle::draw(Paddle& paddle, RenderWindow& window)
 {
 	if (status == 0)
 	{
 		window.draw(getShape());
+	}
+	else
+	{
+		if (item.getStatus() != -2)
+		{
+			item.setStatus(0);//cho item xuat hien khi vat the bien mat
+		}
+		item.moveDown(0.2, 770);
+		if (isItemHitPaddle(paddle) != -10)//neu item cham paddle
+		{
+			item.setStatus(-2);//cho item bien mat vinh vien
+		}
+		if (item.getPosition().top > 770)//neu item di den cuoi man hinh thi se vinh vien bien mat
+		{
+			item.setStatus(-2);
+		}
+		item.draw(window);
+	}
+	//truong hop hung duoc vat pham ban sung
+	if (isItemHitPaddle(paddle) == 0)
+	{
+		paddle.isOnGunMode = true;
 	}
 	if (number != 0)
 	{
@@ -189,5 +205,19 @@ bool Triangle::reflex(Ball& ball, float& vx, float& vy)
 
 int Triangle::isItemHitPaddle(Paddle paddle)
 {
-	return 0;
+	if (item.getPosition().intersects(paddle.getPosition()))
+	{
+		return item.getType();//dua ra so diem khi hung duoc item
+	}
+	return -10;//truong hop item khong cham paddle
 }
+
+bool Triangle::isHitBullet(Bullet bullet)
+{
+	if (bullet.getPosition().intersects(getPosition()))
+	{
+		return true;
+	}
+	return false;
+}
+

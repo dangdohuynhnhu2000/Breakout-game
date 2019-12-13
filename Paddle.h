@@ -1,15 +1,22 @@
+
 #pragma once
 
 #include <SFML\Graphics.hpp>
 #include "Ball.h"
 
-class Paddle {
+class Paddle 
+{
 private:
-	sf::RectangleShape paddle;
+	RectangleShape paddle;
+	
 public:
+	bool canShoot;//dung cho truong hop nhan duoc vat pham ban sung
+	bool isOnGunMode;//cho biet paddle co dang o che do GunMode
 	Paddle();
-	~Paddle();
+	
 	void setSize(sf::Vector2f size); //cai dat kich thuoc
+
+	void turnGunMode(bool shootMode);//bat/tat che do ban sung
 
 	Paddle(sf::Vector2f size); //khoi tao kich thuoc
 
@@ -25,6 +32,6 @@ public:
 
 	bool isHitBall(Ball ball); //tra ve true neu hung duoc bong, nguoc lai tra ve false
 
-	bool reflex(Ball &ball, float &vx, float &vy, bool &check);
-};
+	bool reflex(Ball& ball, float& vx, float& vy);
 
+};

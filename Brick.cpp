@@ -35,7 +35,7 @@ void Brick::moveLeftAndRight(float vx)
 
 }
 
-void Brick::draw(Paddle paddle, RenderWindow& window)
+void Brick::draw(Paddle& paddle, RenderWindow& window)
 {
 
 }
@@ -68,4 +68,9 @@ void Brick::moveDown(float vy)
 bool Brick::reflex(Ball& ball, float& vx, float& vy)
 {
 	return bool();
+}
+
+bool Brick::isHitBullet(Bullet bullet)
+{
+	return true;
 }

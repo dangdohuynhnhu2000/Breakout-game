@@ -16,12 +16,14 @@ private:
 	int n;
 public:
 	void Level2();
-	void Level3();
 	void Level1();
+	void Level3();
 	
+	int getNumOfElements();
 	void moveLeftAndRight(float &vx, int windowWidth);
 	void moveDown(float& vy, int windowHeight);
 	void Reflex(Ball& ball, float& vx, float& vy);
-	void draw(Paddle paddle, RenderWindow& window);
+	void hitBullet(GunMode& gun);
+	void draw(Paddle& paddle, RenderWindow& window);
 };
 

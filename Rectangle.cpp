@@ -70,7 +70,7 @@ RectangleShape Rectangle ::getShape()
 	return shape;
 }
 
-void Rectangle::draw(Paddle paddle, RenderWindow& window)
+void Rectangle::draw(Paddle& paddle, RenderWindow& window)
 {
 	if (status == 0)
 	{
@@ -78,14 +78,13 @@ void Rectangle::draw(Paddle paddle, RenderWindow& window)
 	}
 	else
 	{ 
-		if (item.getType() != 0)
-		{
+		
 			if (item.getStatus() != -2)
 			{
 				item.setStatus(0);//cho item xuat hien khi vat the bien mat
 			}		
 			item.moveDown(0.2, 770);
-			if (isItemHitPaddle(paddle) != 0)//neu item cham paddle
+			if (isItemHitPaddle(paddle) != -10)//neu item cham paddle
 			{
 				item.setStatus(-2);//cho item bien mat vinh vien
 			}
@@ -94,11 +93,16 @@ void Rectangle::draw(Paddle paddle, RenderWindow& window)
 				item.setStatus(-2);
 			}
 			item.draw(window);
-		}
+		
 	}
 	if (number != 0)
 	{
 		window.draw(text);
+	}
+	//hung duoc vat pham ban sung
+	if (isItemHitPaddle(paddle) == 0)
+	{
+		paddle.isOnGunMode = true;
 	}
 }
 
@@ -212,5 +216,15 @@ int Rectangle::isItemHitPaddle(Paddle paddle)
 	{
 		return item.getType();//dua ra so diem khi hung duoc item
 	}
-	return 0;
+	return -10;//truong hop item khong cham paddle
 }
+
+bool Rectangle::isHitBullet(Bullet bullet)
+{
+	if (bullet.getPosition().intersects(getPosition()))
+	{
+		return true;
+	}
+	return false;
+}
+

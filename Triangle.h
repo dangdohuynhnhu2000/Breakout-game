@@ -29,10 +29,12 @@ public:
 	
 	CircleShape getShape();
 
-	virtual void draw(Paddle paddle, RenderWindow& window);
+	virtual void draw(Paddle& paddle, RenderWindow& window);
 
 	virtual void moveLeftAndRight(float vx);
 	virtual void moveDown(float vy);
 	virtual bool reflex(Ball& ball, float& vx, float& vy);
+	virtual bool isHitBullet(Bullet bullet);
 	virtual int isItemHitPaddle(Paddle paddle);
+
 };
