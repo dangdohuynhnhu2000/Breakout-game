@@ -57,6 +57,11 @@ void Triangle::setNumber(int num)
 	text.setPosition({ x,y });
 }
 
+void Triangle::changeNumber(int num)
+{
+	text.setString(to_string(num));
+}
+
 void Triangle::setStatus(int stt)
 {
 	status = stt;
@@ -71,6 +76,11 @@ void Triangle::setItemForBrick(int type)
 CircleShape Triangle::getShape()
 {
 	return shape;
+}
+
+int Triangle::getNumber()
+{
+	return number;
 }
 
 void Triangle::draw(Paddle& paddle, RenderWindow& window)

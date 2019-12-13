@@ -28,6 +28,8 @@ public:
 
 	virtual void setNumber(int num);
 
+	virtual void changeNumber(int num);
+
 	virtual void setStatus(int stt);
 
 	virtual void setItemForBrick(int type);
@@ -41,6 +43,6 @@ public:
 	virtual bool reflex(Ball& ball, float& vx, float& vy);
 	virtual bool isHitBullet(Bullet bullet);
 	virtual int isItemHitPaddle(Paddle paddle);
-	
+	virtual int getNumber();
 };
 

@@ -611,32 +611,27 @@ void Grid::Level2()
 		temp = new Triangle;
 		temp->setBrick(posx, posy, 3, 25, 0);
 		temp->setTexture("blue triangle.jpg");
-		/*if (i == 0)
+		if (i == 0)
 		{
-			temp->setItemForBrick(6);
+			temp->setItemForBrick(0);
 		}
 		if (i == 3)
 		{
-			temp->setItemForBrick(-4);
+			temp->setItemForBrick(0);
 		}
 		if (i == 6)
 		{
-			temp->setItemForBrick(5);
-		}*/
+			temp->setItemForBrick(0);
+		}
 		if (i == 9)
 		{
 			temp->setItemForBrick(0);
 		}
-		if (i == 10)
-		{
-			temp->setItemForBrick(0);
-		}
-		//temp->setItemForBrick(0);
 		shape.push_back(temp);
 	}
 } 
 
-void Grid::Level3()
+/*void Grid::Level3()
 {
 	n = 0;
 	Brick* temp;
@@ -723,6 +718,478 @@ void Grid::Level3()
 		shape.push_back(temp);
 	}
 
+	n += 2;
+	posx = dx + 225;
+	posy = dy + 270;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 225;
+	posy = dy + 345;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 300;
+	posy = dy + 220;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 300;
+	posy = dy + 320;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 300;
+	posy = dy + 245;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 300;
+	posy = dy + 370;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 380;
+	posy = dy + 370;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 380;
+	posy = dy + 245;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 430;
+	posy = dy + 220;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 430;
+	posy = dy + 320;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 430;
+	posy = dy + 270;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 430;
+	posy = dy + 345;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 505;
+	posy = dy + 220;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 2;
+	posx = dx + 505;
+	posy = dy + 320;
+	for (int i = 0; i < 2; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 505;
+	posy = dy + 370;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 505;
+	posy = dy + 245;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 4;
+	posx = dx + 630;
+	posy = dy + 245;
+	for (int i = 0; i < 4; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		shape.push_back(temp);
+	}
+
+	//ve cac gach trong o hinh vuong thu nhat
+	n += 3;
+	posx = dx + 140;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 165;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 190;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+}*/
+
+void Grid::Level3()
+{
+	n = 0;
+	Brick* temp;
+	int height, width, posx, posy, radius, dx, dy, side;
+	posx = 0;
+	posy = 0;
+	dx = 0;
+	dy = 0;
+	width = 40;
+	height = 20;
+	radius = 25;
+	side = 20;
+
+	//ve trai tim thu nhat
+	n += 2;
+	posx = dx + 100;
+	posy = dy + 195;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += width + 50;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		shape.push_back(temp);
+		if (i == 0)
+		{
+			temp->setItemForBrick(1);
+		}
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 220;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		if (i == 1)
+		{
+			temp->setItemForBrick(-1);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 245;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		if (i == 3)
+		{
+			temp->setItemForBrick(6);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 270;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		if (i == 4)
+		{
+			temp->setItemForBrick(0);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 145;
+	posy = dy + 295;
+	for (int i = 0; i < 3; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		if (i == 2)
+		{
+			temp->setItemForBrick(-6);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 190;
+	posy = dy + 320;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie red rectangle.jpg");
+		shape.push_back(temp);
+	}
+
+	//ve trai tim thu hai
+	dx += 400;
+	n += 2;
+	posx = dx + 100;
+	posy = dy + 195;
+	for (int i = 0; i < 2; i++)
+	{
+		posx += width + 50;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		if (i == 0)
+		{
+			temp->setItemForBrick(4);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 220;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		if (i == 3)
+		{
+			temp->setItemForBrick(-2);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 245;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		if (i == 4)
+		{
+			temp->setItemForBrick(6);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 5;
+	posx = dx + 100;
+	posy = dy + 270;
+	for (int i = 0; i < 5; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		if (i == 2)
+		{
+			temp->setItemForBrick(0);
+		}
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 145;
+	posy = dy + 295;
+	for (int i = 0; i < 3; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 190;
+	posy = dy + 320;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie pink rectangle.jpg");
+		shape.push_back(temp);
+	}
+
+	//ve hang hinh chu nhat ben duoi
+	n += 12;
+	posx = dx - 255;
+	posy = dy + 370;
+	for (int i = 0; i < 12; i++)
+	{
+		posx += width + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, width, height, 0);
+		temp->setTexture("lie blue rectangle.jpg");
+		if (i == 2)
+		{
+			temp->setItemForBrick(5);
+		}
+		if (i == 6)
+		{
+			temp->setItemForBrick(-2);
+		}
+		if (i == 10)
+		{
+			temp->setItemForBrick(4);
+		}
+		shape.push_back(temp);
+	}
+
+
+	//cai dat so cho moi vien gach
+	int number;
+	for (int i = 0; i < shape.size(); i++)
+	{
+		number = random(1, 3);
+		shape[i]->setNumber(number);
+	}
 }
 
 void Grid::moveLeftAndRight(float &vx, int windowWidth)
@@ -745,7 +1212,7 @@ void Grid::moveLeftAndRight(float &vx, int windowWidth)
 	}
 }
 
-void Grid::moveDown(float& vy, int windowHeight)
+void Grid::moveDown(float vy, int windowHeight)
 {
 	for (int i = 0; i < shape.size(); i++)
 	{
@@ -764,7 +1231,10 @@ void Grid::Reflex(Ball& ball, float& vx, float& vy)
 			collision = (*it)->reflex(ball, vx, vy);
 			if (collision)
 			{
-				(*it)->setStatus(-1);
+				if ((*it)->getNumber() == 0)
+				{
+					(*it)->setStatus(-1);
+				}
 			}
 		}
 
@@ -784,7 +1254,10 @@ void Grid::hitBullet(GunMode& gun)
 				collision = (*it)->isHitBullet(gun.bulletList[i]);
 					if (collision)
 					{
-						(*it)->setStatus(-1);
+						if ((*it)->getNumber() == 0)
+						{
+							(*it)->setStatus(-1);
+						}
 					}
 			}
 

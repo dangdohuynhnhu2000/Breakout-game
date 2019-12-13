@@ -33,6 +33,11 @@ int Rectangle::getStatus()
 	return status;
 }
 
+int Rectangle::getNumber()
+{
+	return number;
+}
+
 void Rectangle::setPosition(float newPosx, float newPosy)
 {
 	position.x = newPosx;
@@ -45,13 +50,18 @@ void Rectangle::setNumber(int num)
 	number = num;
 	font.loadFromFile("iCielPanton-Black.otf");
 	text.setString(to_string(number));
-	text.setCharacterSize(20);
+	text.setCharacterSize(15);
 	text.setFont(font);
-	text.setFillColor(Color::Yellow);
+	text.setFillColor(Color::White);
 	//chinh cho doan text o giua hinh chu nhat
 	x = (width / 2 + getPosition().left) - (text.getGlobalBounds().width / 2);
-	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2);
+	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2) - 2;
 	text.setPosition({ x,y });
+}
+
+void Rectangle::changeNumber(int num)
+{
+	text.setString(to_string(num));
 }
 
 void Rectangle::setStatus(int stt)
@@ -77,8 +87,7 @@ void Rectangle::draw(Paddle& paddle, RenderWindow& window)
 		window.draw(getShape());
 	}
 	else
-	{ 
-		
+	{ 	
 			if (item.getStatus() != -2)
 			{
 				item.setStatus(0);//cho item xuat hien khi vat the bien mat
@@ -116,6 +125,7 @@ void Rectangle::moveDown(float vy)
 {
 	position.y += vy;
 	shape.setPosition(position);
+	text.move(0, vy);//cho so di chuyen theo brick
 }
 
 bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
@@ -123,7 +133,7 @@ bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
 	bool collision = false;
 
 	float x0 = getPosition().left;
-	float x1 = x0 + getPosition().width;
+	float x1 = x0 + getPosition().width; 
 	float y0 = getPosition().top;
 	float y1 = y0 + getPosition().height;
 
@@ -136,6 +146,11 @@ bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
 	{
 		if ((bx0 + vx <= x1 && bx1 + vx >= x0))
 		{
+			if (number != 0)
+			{
+				number--;
+				changeNumber(number);
+			}
 			collision = true;
 		}
 	}
@@ -223,6 +238,11 @@ bool Rectangle::isHitBullet(Bullet bullet)
 {
 	if (bullet.getPosition().intersects(getPosition()))
 	{
+		if (number != 0)
+		{
+			number--;
+			changeNumber(number);
+		}
 		return true;
 	}
 	return false;

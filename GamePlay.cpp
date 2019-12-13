@@ -26,6 +26,7 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 
 	//tao paddle
 	Paddle paddle1({ 120, 10 });
+	paddle1.isOnGunMode = false;
 	paddle1.setColor(255, 85, 45, 255);
 	//tao 4 buc tuong
 	Wall wall;
@@ -45,10 +46,10 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 	Grid grid;
 	float vt = 0.5;
 	float windowHeight = 900; 
-	grid.Level2();
+	grid.Level3();
 
-	GunMode gun;
-	gun.setAmountOfBullets(5);
+	//GunMode gun;
+	//gun.setAmountOfBullets(5);
 	int limitGunMode = 0;//gioi han ma tai do ta tat che do GunMode
 
 	bool isOnGunMode = false;//cho biet co dang o che do gunMode hay khong
@@ -57,16 +58,20 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 	float vy = ballSpeed;
 
 	int n = 0;
+	GunMode gun;
+	gun.setAmountOfBullets(5);
 
+	int frameCount = 0;//dem xem bao nhieu frame cua game da duoc thuc hien
 	while (playing == true)
 	{
+		frameCount++;
 		bool check = true;
 
 		//huong di chuyen cua bong, mac dinh ban dau di chuyen ve ben trai, huong thay doi lien tuc
 
 		float timeElapse = 3;
 		static bool goingUp = false;
-		static bool goingDown = false;
+		static bool goingDown = false; 
 		static bool goingLeft = true;
 		static bool goingRight = false;
 
@@ -233,12 +238,17 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 		
 		//ve chi tiet
 		drawToWindow(window, paddle1, ball, wall, Guide);
-		//window.draw(Score);
+		window.draw(Score);
 		grid.draw(paddle1, window);
+		if (frameCount % 5000 == 0)
+		{
+			grid.moveDown(5, 900);
+		}
 		if (paddle1.isOnGunMode == true)
 		{
 			gun.turnOnGunMode(window, paddle1);
 		}
+		gun.turnOffGunMode(paddle1);
 		grid.hitBullet(gun);
 		window.display();//hien thi ra man hinh		
 	}

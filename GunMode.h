@@ -11,17 +11,17 @@ private:
 	int totalBullets;	
 	int nextBullet;//cho biet bullet nao tiep theo duoc ban
 	Texture texture;
-	int firstExistBullet;//bullet dau tien trong chuoi bullet dang hien thi tren man hinh
 public:
 	vector <Bullet> bulletList;
 	GunMode();
 	void setAmountOfBullets(int n);
-	void checkBulletClock(Paddle paddle);
+	void resetBulletList();//reset lai de chuan bi cho lan hung duoc vat pham ban thu 2
+	void checkBulletClock(Paddle& paddle);
 	void updateNextBullet();//cap nhat nextBullet
 	void moveBullets();
 	void shootMode(Paddle& paddle);
 	void drawBullets(RenderWindow& window);
 	void turnOnGunMode(RenderWindow& window, Paddle& paddle);
-	void turnOffGunMode();
+	void turnOffGunMode(Paddle& paddle);
 };
 

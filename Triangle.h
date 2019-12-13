@@ -14,6 +14,9 @@ public:
 	virtual void setBrick(float startX, float startY, float a, float b, int stt);
 
 	virtual void setTexture(string textureName);
+
+	virtual void changeNumber(int num);
+
 	virtual void setStatus(int stt);
 	
 	FloatRect getPosition();
@@ -21,6 +24,7 @@ public:
 	virtual Vector2f getPositionxy();
 
 	virtual int getStatus();
+	virtual int getNumber();
 
 	virtual void setPosition(float newPosx, float newPosy);
 

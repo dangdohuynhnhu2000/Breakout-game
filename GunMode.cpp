@@ -4,7 +4,6 @@ GunMode::GunMode()
 {
 	totalBullets = 0;
 	nextBullet = 0;
-	firstExistBullet = -1;
 	texture.loadFromFile("bullet.png");
 }
 
@@ -18,19 +17,28 @@ void GunMode::setAmountOfBullets(int n)
 	}	
 }
 
+void GunMode::resetBulletList()
+{
+	nextBullet = 0;
+	for (int i = 0; i < totalBullets; i++)
+	{
+		bulletList[i].exist = -1;
+	}
+}
+
 void GunMode::updateNextBullet()
 {
 	if (nextBullet < totalBullets - 1)
 	{
 		nextBullet += 1;
 	}
-	if (nextBullet == totalBullets)
+	if (nextBullet == totalBullets)//truong hop da ban het dan
 	{
 		nextBullet = 0;
 	}
 }
 
-void GunMode::checkBulletClock(Paddle paddle)
+void GunMode::checkBulletClock(Paddle& paddle)
 {
 	Time time;
 	time = seconds(0.3);
@@ -87,10 +95,17 @@ void GunMode::turnOnGunMode(RenderWindow& window, Paddle& paddle)
 	}
 }
 
-void GunMode::turnOffGunMode()
+void GunMode::turnOffGunMode(Paddle& paddle)
 {
-	for (int i = 0; i < totalBullets; i++)
+	bool check = true;
+	if (bulletList[totalBullets - 2].exist == -2)
 	{
-		bulletList[i].exist = -1;
+		check = false;
+	}
+
+	if (!check) //neu tat ca dan da ra khoi man hinh thi tat che do ban sung
+	{
+		resetBulletList();
+		paddle.isOnGunMode = false;
 	}
 }
