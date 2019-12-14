@@ -21,14 +21,18 @@ protected:
 	Text text; //de in cac chu hoac so trong cuc gach
 	Font font;
 	Item item;//vat pham thuong, phat trong game
+	bool isStone;//xho biet no co pha la da hay khong
 public:
 	virtual FloatRect getPosition() = 0;
 	virtual Vector2f getPositionxy() = 0;
 	virtual int getStatus() = 0;
+	virtual int getNumber() = 0;
 	virtual void setPosition(float newPosx, float newPosy) = 0;
 	virtual void setBrick(float startX, float startY, float a, float b, int stt) = 0;
 	virtual void setTexture(string textureName) = 0;
 	virtual void setNumber(int num) = 0;
+	virtual void setIsStone(bool type) = 0;
+	virtual void changeNumber(int num) = 0;
 	virtual void setStatus(int stt) = 0;
 	virtual void setItemForBrick(int type) = 0;
 	virtual void draw(Paddle& paddle, RenderWindow& window) = 0;

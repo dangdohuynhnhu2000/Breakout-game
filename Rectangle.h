@@ -17,6 +17,8 @@ public:
 	virtual void setBrick(float startX, float startY, float a, float b, int stt);
 	
 	virtual void setTexture(string textureName);
+
+	virtual void setIsStone(bool type);
 	
 	virtual FloatRect getPosition();
 

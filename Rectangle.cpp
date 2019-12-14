@@ -10,12 +10,18 @@ void Rectangle::setBrick(float startX, float startY, float a, float b, int stt)
 	shape.setSize(Vector2f(width,height));
 	shape.setPosition(position);
 	status = stt;
+	isStone = false;
 }
 
 void Rectangle::setTexture(string textureName)
 {
 	texture.loadFromFile(textureName);
 	shape.setTexture(&texture);
+}
+
+void Rectangle::setIsStone(bool type)
+{
+	isStone = type;
 }
 
 FloatRect Rectangle::getPosition()
@@ -141,7 +147,7 @@ bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
 	float bx1 = bx0 + ball.getPosition().width;
 	float by0 = ball.getPosition().top;
 	float by1 = by0 + ball.getPosition().height;
-
+	
 	if (by0 + vy <= y1 && by1 + vy >= y0)
 	{
 		if ((bx0 + vx <= x1 && bx1 + vx >= x0))

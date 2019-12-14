@@ -631,14 +631,14 @@ void Grid::Level2()
 	}
 } 
 
-/*void Grid::Level3()
+void Grid::Level4()
 {
 	n = 0;
 	Brick* temp;
 	int height, width, posx, posy, radius, dx, dy, side;
 	posx = 0;
 	posy = 0;
-	dx = 0;
+	dx = 80;
 	dy = 0;
 	width = 40;
 	height = 20;
@@ -667,6 +667,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -679,6 +680,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -691,6 +693,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -703,6 +706,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -715,6 +719,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -727,6 +732,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -739,6 +745,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -751,6 +758,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -763,6 +771,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -775,6 +784,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -787,6 +797,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -799,6 +810,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -811,6 +823,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -823,6 +836,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -835,6 +849,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -847,6 +862,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -859,6 +875,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -871,6 +888,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -883,18 +901,33 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
-	n += 5;
-	posx = dx + 505;
+	n += 2;
+	posx = dx + 580;
 	posy = dy + 370;
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 2; i++)
 	{
 		posx += side + 5;
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
+		shape.push_back(temp);
+	}
+
+	n += 1;
+	posx = dx + 505;
+	posy = dy + 370;
+	for (int i = 0; i < 1; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -907,6 +940,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -919,6 +953,7 @@ void Grid::Level2()
 		temp = new Rectangle;
 		temp->setBrick(posx, posy, side, side, 0);
 		temp->setTexture("stone brick.jpg");
+		temp->setIsStone(true);
 		shape.push_back(temp);
 	}
 
@@ -958,7 +993,108 @@ void Grid::Level2()
 		temp->setTexture("blue square.jpg");
 		shape.push_back(temp);
 	}
-}*/
+
+	//ve cac gach trong o hinh vuong thu hai
+	dx += 200;
+	n += 3;
+	posx = dx + 140;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 165;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 190;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	//ve cac gach trong o hinh vuong thu ba
+	dx += 200;
+	n += 3;
+	posx = dx + 140;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 165;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 3;
+	posx = dx + 190;
+	posy = dy + 260;
+	for (int i = 0; i < 3; i++)
+	{
+		posy += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	//ve day hinh vuong phia tren
+	n += 20;
+	posx = dx - 300;
+	posy = dy + 200;
+	for (int i = 0; i < 20; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+
+	n += 20;
+	posx = dx - 300;
+	posy = dy + 175;
+	for (int i = 0; i < 20; i++)
+	{
+		posx += side + 5;
+		temp = new Rectangle;
+		temp->setBrick(posx, posy, side, side, 0);
+		temp->setTexture("blue square.jpg");
+		shape.push_back(temp);
+	}
+}
 
 void Grid::Level3()
 {

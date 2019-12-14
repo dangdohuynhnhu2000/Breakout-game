@@ -74,3 +74,17 @@ bool Brick::isHitBullet(Bullet bullet)
 {
 	return true;
 }
+
+int Brick::getNumber()
+{
+	return 0;
+}
+
+void Brick::changeNumber(int num)
+{
+	
+}
+
+void Brick::setIsStone(bool type)
+{
+}

@@ -11,14 +11,14 @@ using namespace std;
 
 class Grid
 {
-private:
+private:  
 	vector <Brick*> shape;
 	int n;
 public:
 	void Level2();
 	void Level1();
 	void Level3();
-	//void Level4();
+	void Level4();
 	
 	int getNumOfElements();
 	void moveLeftAndRight(float &vx, int windowWidth);

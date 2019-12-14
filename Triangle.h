@@ -18,6 +18,8 @@ public:
 	virtual void changeNumber(int num);
 
 	virtual void setStatus(int stt);
+
+	virtual void setIsStone(bool type);
 	
 	FloatRect getPosition();
 

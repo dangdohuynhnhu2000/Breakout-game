@@ -13,6 +13,7 @@ void Triangle::setBrick(float startX, float startY, float a, float b, int stt)
 	shape.setRadius(b);
 	shape.setPosition(position);
 	status = stt;
+	isStone = false;
 }
 
 void Triangle::setTexture(string textureName)
@@ -55,6 +56,11 @@ void Triangle::setNumber(int num)
 	x = (baseSize / 2 + getPosition().left) - (text.getGlobalBounds().width / 2) + radius/1.2;
 	y = (height / 2 + getPosition().top) - (text.getGlobalBounds().height / 2);
 	text.setPosition({ x,y });
+}
+
+void Triangle::setIsStone(bool type)
+{
+	isStone = type;
 }
 
 void Triangle::changeNumber(int num)

@@ -46,11 +46,7 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 	Grid grid;
 	float vt = 0.5;
 	float windowHeight = 900; 
-	grid.Level3();
-
-	//GunMode gun;
-	//gun.setAmountOfBullets(5);
-	int limitGunMode = 0;//gioi han ma tai do ta tat che do GunMode
+	grid.Level4 ();
 
 	bool isOnGunMode = false;//cho biet co dang o che do gunMode hay khong
 	
@@ -70,11 +66,7 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 		//huong di chuyen cua bong, mac dinh ban dau di chuyen ve ben trai, huong thay doi lien tuc
 
 		float timeElapse = 3;
-		static bool goingUp = false;
-		static bool goingDown = false; 
-		static bool goingLeft = true;
-		static bool goingRight = false;
-
+		
 		//huong di chuyen cua may
 		//sau moi vong lap tu tra ve mac dinh
 		bool AIgoingUp = false;
@@ -113,8 +105,8 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 					window.close();
 					exit(0);
 				case sf::Keyboard::Tab:
-					playing = goingUp = goingDown = goingRight = false;// reset bong va tro ve menu
-					goingLeft = true;
+					/*playing = goingUp = goingDown = goingRight = false;// reset bong va tro ve menu
+					goingLeft = true;*/
 					ballSpeed = defaultSpeed;// reset speed
 					defaultPos(paddle1, ball);//reset position
 					break;
@@ -141,8 +133,9 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 							break;
 						}
 						if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
-							goingLeft = true;
+							/*goingLeft = true;
 							goingDown = goingUp = goingRight = false;
+							*/
 							playing = false;//tro ve main menu
 							break;
 						}
@@ -201,7 +194,7 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 			//reset game
 			ballSpeed = defaultSpeed;
 			defaultPos(paddle1, ball);
-			goingDown = goingUp = false;
+			//goingDown = goingUp = false;
 			//tam dung doi nguoi choi san sang
 			while (window.waitEvent(event)) {
 				switch (event.type) {
@@ -224,7 +217,6 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 			}
 		}
 		grid.Reflex(ball, vx, vy);
-		ball.move({ vx, vy });
 	
 		//Player score
 		if (wall.Left.isHitBall(ball) == true) {
@@ -235,15 +227,17 @@ void gamePlay(sf::RenderWindow & window, sf::Font font, float padSpeed, float ba
 		if (wall.Right.isHitBall(ball) == true) {
 			vx = -vx;
 		}
-		
+
+		ball.move({ vx, vy });
+		//pretendWayOfBall(window, wall, ball, grid, vx, vy);
 		//ve chi tiet
 		drawToWindow(window, paddle1, ball, wall, Guide);
 		window.draw(Score);
 		grid.draw(paddle1, window);
-		if (frameCount % 5000 == 0)
+		/*if (frameCount % 5000 == 0)
 		{
 			grid.moveDown(5, 900);
-		}
+		}*/
 		if (paddle1.isOnGunMode == true)
 		{
 			gun.turnOnGunMode(window, paddle1);
