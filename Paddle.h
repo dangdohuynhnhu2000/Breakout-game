@@ -1,22 +1,20 @@
-
 #pragma once
 
 #include <SFML\Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Ball.h"
 
-class Paddle 
-{
+class Paddle {
 private:
-	RectangleShape paddle;
-	
+	sf::RectangleShape paddle;
+	int score;
 public:
 	bool canShoot;//dung cho truong hop nhan duoc vat pham ban sung
 	bool isOnGunMode;//cho biet paddle co dang o che do GunMode
-	Paddle();
-	
-	void setSize(sf::Vector2f size); //cai dat kich thuoc
 
-	void turnGunMode(bool shootMode);//bat/tat che do ban sung
+	Paddle();
+	~Paddle();
+	void setSize(sf::Vector2f size); //cai dat kich thuoc
 
 	Paddle(sf::Vector2f size); //khoi tao kich thuoc
 
@@ -28,10 +26,18 @@ public:
 
 	void setColor(int a, int b, int c, int d); //to mau
 
-	FloatRect getPosition();
+	FloatRect getPosition(); // lay vi tri cua paddle
 
-	bool isHitBall(Ball ball); //tra ve true neu hung duoc bong, nguoc lai tra ve false
+	bool isHitBall(Ball ball, float vx, float vy); //tra ve true neu hung duoc bong, nguoc lai tra ve false
 
-	bool reflex(Ball& ball, float& vx, float& vy);
+	bool reflex(Ball &ball, float &vx, float &vy, bool &check);
 
+	void setScore(int newScore); // thiet lap diem cho paddle
+
+	int getScore(); // lay diem tu paddle
+
+	void turnGunMode(bool shootMode); // bat tat che do ban sung
+
+	void autoMove(float vx);
 };
+

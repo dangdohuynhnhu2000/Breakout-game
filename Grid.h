@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 using namespace sf;
 #include "Rectangle.h"
 #include "Triangle.h"
@@ -7,24 +8,49 @@ using namespace sf;
 #include "Brick.h"
 #include <vector>
 #include <iostream>
+#include "GunMode.h"
+#include <iostream>
+#include <stdlib.h>
+#include "SaveGame.h"
 using namespace std;
 
 class Grid
 {
-private:  
+private:
 	vector <Brick*> shape;
 	int n;
+	int level;
 public:
 	void Level2();
-	void Level1();
 	void Level3();
+	void Level1();
 	void Level4();
 	
-	int getNumOfElements();
+	int getNumOfElements(); // lay so luong gach
+
 	void moveLeftAndRight(float &vx, int windowWidth);
-	void moveDown(float vy, int windowHeight);
-	void Reflex(Ball& ball, float& vx, float& vy);
-	void hitBullet(GunMode& gun);
-	void draw(Paddle& paddle, RenderWindow& window);
+
+	void moveDown(float& vy, int windowHeight);
+
+	bool Reflex(Ball& ball, float& vx, float& vy, Paddle & paddle); // chay vong lap de phan xa bong
+
+	void draw(Paddle &paddle, RenderWindow& window); // ve toan bo gach
+
+	vector <Brick*> getShape(); // lay toan bo gach
+
+	int getlevel();// lay gia tri level
+
+	void hitBullet(GunMode& gun, Paddle & paddle); // va cham vien dan
+
+	int getRemainAmount(float y); // lay so luong gach chua bien mat
+
+	int random(int a, int b); // ham khoi tao so ngau nhien
+
+	void setStatus(vector <int>); // thiet lap status cho tat ca gach (su dung trong save game)
+
+	void setStatusItem(vector <float> item_x, vector <float> itm_y, vector <int> item_status);
+
+	void setNumber(vector <int> list_num);
+
 };
 

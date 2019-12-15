@@ -14,9 +14,19 @@ public:
 	//-1: an
 	//-2: bien mat vinh vien khoi man hinh
 	Bullet(Texture& texture);
-	FloatRect getPosition();
-	void Shoot(Paddle& paddle, Clock& bulletClock);
-	void moveUp(float a, float b);
-	void draw(RenderWindow& window);
-};
 
+	FloatRect getPosition();
+
+	void Shoot(Paddle& paddle, Clock& bulletClock);
+
+	void moveUp(float a, float b);
+
+	void draw(RenderWindow& window);
+
+	void setStatus(int status);
+
+	int getStatus();
+
+	void setPosition(float x, float y);
+
+};

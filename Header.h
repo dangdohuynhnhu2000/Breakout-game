@@ -13,10 +13,15 @@ using namespace sf;
 #include "Ball.h"
 #include "Wall.h"
 #include "Menu.h"
-#include "Rectangle.h"
 #include "Figure.h"
 #include "Grid.h"
+#include "Item.h"
+#include "Brick.h"
+#include "Triangle.h"
+#include "Rectangle.h"
 #include "SaveGame.h"
+#include "Button.h"
+#include "TextBox.h"
 
 
 

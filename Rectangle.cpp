@@ -1,3 +1,4 @@
+
 #include "Rectangle.h"
 
 
@@ -7,21 +8,15 @@ void Rectangle::setBrick(float startX, float startY, float a, float b, int stt)
 	position.y = startY;
 	width = a;
 	height = b;
-	shape.setSize(Vector2f(width,height));
+	shape.setSize(Vector2f(width, height));
 	shape.setPosition(position);
 	status = stt;
-	isStone = false;
 }
 
 void Rectangle::setTexture(string textureName)
 {
 	texture.loadFromFile(textureName);
 	shape.setTexture(&texture);
-}
-
-void Rectangle::setIsStone(bool type)
-{
-	isStone = type;
 }
 
 FloatRect Rectangle::getPosition()
@@ -39,11 +34,6 @@ int Rectangle::getStatus()
 	return status;
 }
 
-int Rectangle::getNumber()
-{
-	return number;
-}
-
 void Rectangle::setPosition(float newPosx, float newPosy)
 {
 	position.x = newPosx;
@@ -56,18 +46,13 @@ void Rectangle::setNumber(int num)
 	number = num;
 	font.loadFromFile("iCielPanton-Black.otf");
 	text.setString(to_string(number));
-	text.setCharacterSize(15);
+	text.setCharacterSize(20);
 	text.setFont(font);
-	text.setFillColor(Color::White);
+	text.setFillColor(Color::Yellow);
 	//chinh cho doan text o giua hinh chu nhat
 	x = (width / 2 + getPosition().left) - (text.getGlobalBounds().width / 2);
-	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2) - 2;
+	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2);
 	text.setPosition({ x,y });
-}
-
-void Rectangle::changeNumber(int num)
-{
-	text.setString(to_string(num));
 }
 
 void Rectangle::setStatus(int stt)
@@ -81,34 +66,38 @@ void Rectangle::setItemForBrick(int type)
 	item.setItem(position.x, position.y, name, type, -1);
 }
 
-RectangleShape Rectangle ::getShape()
+RectangleShape Rectangle::getShape()
 {
 	return shape;
 }
 
-void Rectangle::draw(Paddle& paddle, RenderWindow& window)
+void Rectangle::draw(Paddle &paddle, RenderWindow& window)
 {
-	if (status == 0)
+	if (status != -1) 
 	{
-		window.draw(getShape());
+		window.draw(getShape()); // trang thai dang ton tai 
 	}
-	else
-	{ 	
-			if (item.getStatus() != -2)
+	else // trang thai da bien mat
+	{
+		
+			if (item.getStatus() != -2) // item chua bi bien mat
 			{
 				item.setStatus(0);//cho item xuat hien khi vat the bien mat
-			}		
+			}
 			item.moveDown(0.2, 770);
 			if (isItemHitPaddle(paddle) != -10)//neu item cham paddle
 			{
-				item.setStatus(-2);//cho item bien mat vinh vien
+				if (item.getStatus() != -2)
+				{
+					item.setStatus(-2);//cho item bien mat vinh vien
+					paddle.setScore(paddle.getScore() + item.getType()); // tinh diem
+				}
 			}
-			if (item.getPosition().top > 770)//neu item di den cuoi man hinh thi se vinh vien bien mat
+			if (item.getPosition().top > 750)//neu item di den cuoi man hinh thi se vinh vien bien mat
 			{
 				item.setStatus(-2);
 			}
 			item.draw(window);
-		
 	}
 	if (number != 0)
 	{
@@ -131,15 +120,14 @@ void Rectangle::moveDown(float vy)
 {
 	position.y += vy;
 	shape.setPosition(position);
-	text.move(0, vy);//cho so di chuyen theo brick
 }
 
-bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
+bool Rectangle::reflex(Ball& ball, float& vx, float& vy, Paddle & paddle)
 {
 	bool collision = false;
 
 	float x0 = getPosition().left;
-	float x1 = x0 + getPosition().width; 
+	float x1 = x0 + getPosition().width;
 	float y0 = getPosition().top;
 	float y1 = y0 + getPosition().height;
 
@@ -147,7 +135,7 @@ bool Rectangle::reflex(Ball& ball, float& vx, float& vy)
 	float bx1 = bx0 + ball.getPosition().width;
 	float by0 = ball.getPosition().top;
 	float by1 = by0 + ball.getPosition().height;
-	
+
 	if (by0 + vy <= y1 && by1 + vy >= y0)
 	{
 		if ((bx0 + vx <= x1 && bx1 + vx >= x0))
@@ -237,20 +225,41 @@ int Rectangle::isItemHitPaddle(Paddle paddle)
 	{
 		return item.getType();//dua ra so diem khi hung duoc item
 	}
-	return -10;//truong hop item khong cham paddle
+	return -10;
 }
 
 bool Rectangle::isHitBullet(Bullet bullet)
 {
 	if (bullet.getPosition().intersects(getPosition()))
 	{
-		if (number != 0)
-		{
-			number--;
-			changeNumber(number);
-		}
 		return true;
 	}
 	return false;
+}
+
+int Rectangle::getNumber()
+{
+	return number;
+}
+
+void Rectangle::changeNumber(int num)
+{
+	number = num;
+	text.setString(to_string(num));
+}
+
+Item Rectangle::getItem()
+{
+	return item;
+}
+
+void Rectangle::setStatusForItem(int status)
+{
+	item.setStatus(status);
+}
+
+void Rectangle::setPositionForItem(Vector2f pos)
+{
+	item.setPosition(pos.x, pos.y);
 }
 

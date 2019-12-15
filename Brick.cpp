@@ -35,7 +35,7 @@ void Brick::moveLeftAndRight(float vx)
 
 }
 
-void Brick::draw(Paddle& paddle, RenderWindow& window)
+void Brick::draw(Paddle &paddle, RenderWindow& window)
 {
 
 }
@@ -65,14 +65,14 @@ void Brick::moveDown(float vy)
 
 }
 
-bool Brick::reflex(Ball& ball, float& vx, float& vy)
+bool Brick::reflex(Ball& ball, float& vx, float& vy, Paddle & paddle)
 {
 	return bool();
 }
 
 bool Brick::isHitBullet(Bullet bullet)
 {
-	return true;
+	return bool();
 }
 
 int Brick::getNumber()
@@ -82,9 +82,20 @@ int Brick::getNumber()
 
 void Brick::changeNumber(int num)
 {
-	
+
 }
 
-void Brick::setIsStone(bool type)
+Item Brick::getItem()
 {
+	return Item();
+}
+
+void Brick::setStatusForItem(int status)
+{
+
+}
+
+void Brick::setPositionForItem(Vector2f pos)
+{
+
 }

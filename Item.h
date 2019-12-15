@@ -14,9 +14,9 @@ private:
 	Texture texture;
 	int type;
 	int status;
-	//-1: bien mat
+	//-1: an ben trong gach
 	//0: ton tai
-	//-2: bien mat vinh vien
+	//-2: bien mat
 public:
 	Item();
 	void setPosition(float x, float y);

@@ -14,7 +14,7 @@ void GunMode::setAmountOfBullets(int n)
 	for (int i = 0; i < totalBullets; i++)
 	{
 		bulletList.push_back(bullet);
-	}	
+	}
 }
 
 void GunMode::resetBulletList()
@@ -42,7 +42,7 @@ void GunMode::checkBulletClock(Paddle& paddle)
 {
 	Time time;
 	time = seconds(0.3);
-	
+
 	if (bulletClock.getElapsedTime() > time)//neu vien dan thu nhat da duoc ban di sau 1 khoang thoi gian quy dinh
 	{
 		updateNextBullet();//cap nhat lai nextBullet
@@ -88,7 +88,7 @@ void GunMode::turnOnGunMode(RenderWindow& window, Paddle& paddle)
 {
 	drawBullets(window);
 	shootMode(paddle);
-	moveBullets(); 
+	moveBullets();
 	if (paddle.canShoot == false)
 	{
 		checkBulletClock(paddle);
@@ -108,4 +108,14 @@ void GunMode::turnOffGunMode(Paddle& paddle)
 		resetBulletList();
 		paddle.isOnGunMode = false;
 	}
+}
+
+int GunMode::getNextBullet()
+{
+	return nextBullet;
+}
+
+void GunMode::setNextBullet(int next)
+{
+	nextBullet = next;
 }

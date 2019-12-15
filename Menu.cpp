@@ -60,3 +60,5 @@ int Menu::setAmount(int amount) {
 	amountOfItems = amount;
 	return amount;
 }
+
+

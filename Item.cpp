@@ -6,6 +6,7 @@ Item::Item()
 	position.y = 0;
 	sprite.setPosition(position);
 	type = 0;
+	status = -2;
 }
 
 void Item::setPosition(float x, float y)

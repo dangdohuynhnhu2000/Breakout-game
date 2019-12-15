@@ -7,7 +7,7 @@ void defaultPos(Paddle &paddle1, Ball& ball) {
 }
 //ve cac chi tiet
 void drawToWindow(sf::RenderWindow& window, Paddle paddle1, Ball ball, Wall wall, sf::Text Exit) {
-	window.clear(sf::Color(40, 40, 40));
+	window.clear(sf::Color(20, 20, 20));
 	window.draw(Exit);
 	paddle1.drawTo(window);
 	wall.drawTo(window);
@@ -45,7 +45,7 @@ void changeSpeed(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, in
 	Level.setString("Level: " + std::to_string(speed));//cap nhat thong bao level
 }
 //doi mode
-void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, bool& AIMode, sf::Text& Mode) {
+void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, bool& history, sf::Text& Mode) {
 	switch (event.type) {
 	case sf::Event::Closed:
 		window.close();
@@ -60,26 +60,26 @@ void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, b
 			break;
 			//left right de thay doi che do chon
 		case sf::Keyboard::Right:
-			AIMode = !AIMode;
+			history = !history;
 			break;
 		case sf::Keyboard::Left:
-			AIMode = !AIMode;
+			history = !history;
 			break;
 		}
 		break;
 	}
 	//cap nhat thong bao mode
-	if (AIMode == true) {
-		Mode.setString("Human VS Computer");
+	if (history == true) {
+		Mode.setString("History");
 	}
 	else {
-		Mode.setString("Human VS Human");
+		Mode.setString("New game");
 	}
 }
 // menu thay doi speed, level cho game
-void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, float &defaultSpeed, float &ballSpeed, float &padSpeed, int &speed, bool &AIMode, sf::Text &Mode) {
+void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, float &defaultSpeed, float &ballSpeed, float &padSpeed, int &speed, bool & history, sf::Text &Mode) {
 	//optionmenu
-	std::string optionMenu[3];
+	std::string optionMenu[4];
 	optionMenu[0] = "Select Mode";
 	optionMenu[1] = "Speed Level";
 	optionMenu[2] = "Return";
@@ -125,16 +125,16 @@ void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, 
 				changeSpeed(window, event, Level, speed, optionScreen);
 
 				defaultSpeed = (0.36 + 1.0 * speed / 20);
-				padSpeed = defaultSpeed - 0.02;
+				padSpeed = defaultSpeed ;
 				ballSpeed = defaultSpeed;
 				break;
 			}
-			//gia tri 0 tuong ung mide
+			//gia tri 0 tuong ung mode
 			if (optionScreen.getPressedItem() == 0)
 			{
 				Level.setFillColor(sf::Color::Color(185, 175, 120));
 				Mode.setFillColor(sf::Color::Yellow);
-				changeMode(window, event, optionScreen, AIMode, Mode);
+				changeMode(window, event, optionScreen, history, Mode);
 			}
 			Level.setFillColor(sf::Color::Color(185, 175, 120));
 			break;

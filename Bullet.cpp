@@ -16,7 +16,7 @@ void Bullet::Shoot(Paddle& paddle, Clock& bulletClock)
 {
 	exist = 0;
 	float x, y;
-	x = paddle.getPosition().left + paddle.getPosition().width / 2 - sprite.getGlobalBounds().width/2;
+	x = paddle.getPosition().left + paddle.getPosition().width / 2 - sprite.getGlobalBounds().width / 2;
 	y = paddle.getPosition().top - sprite.getGlobalBounds().height;
 	sprite.setPosition(x, y);
 	paddle.turnGunMode(false);//tat che do ban sung cho paddle cho den khi thoa dieu kien ban
@@ -36,4 +36,19 @@ void Bullet::moveUp(float a, float b)
 void Bullet::draw(RenderWindow& window)
 {
 	window.draw(sprite);
+}
+
+void Bullet :: setStatus(int status)
+{
+	exist = status;
+}
+
+int Bullet::getStatus()
+{
+	return exist;
+}
+
+void Bullet::setPosition(float x, float y)
+{
+	sprite.setPosition({ x,y });
 }

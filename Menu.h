@@ -1,6 +1,11 @@
 #pragma once
 #include "SFML/Graphics.hpp"
 #include <string>
+#include <vector>
+#include "TextBox.h"
+#include "Button.h"
+using namespace std;
+using namespace sf;
 
 #define MAX_NUMBER_OF_ITEMS 3
 #define const sf::Time Game::TimePerFrame  sf::seconds(1.f / 60.f)
@@ -8,6 +13,7 @@
 class Menu
 {
 private:
+	
 	int selectedItemIndex;//phan tu dang duoc chon
 
 	int amountOfItems;//so luong phan tu trong menu
@@ -31,4 +37,6 @@ public:
 	void resetPressedItem();  //tra ve 0 khi roi menu
 
 	int setAmount(int amount);  //truyen so dong trong menu
+
+	
 };
