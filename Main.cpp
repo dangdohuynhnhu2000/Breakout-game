@@ -1,4 +1,5 @@
 #include "Header.h"
+#include "Name.h"
 
 int main() {
 
@@ -21,7 +22,7 @@ int main() {
 	float defaultSpeed = 0.41;
 	float padSpeed = defaultSpeed +0.2;
 	float ballSpeed = defaultSpeed;
-	int speed = 5;
+	int level = 1;
 
 	//Thong bao level
 	sf::Text Level;
@@ -29,7 +30,7 @@ int main() {
 	Level.setFillColor(sf::Color::Color(185, 175, 120));
 	Level.setPosition({ 250,480 });
 	Level.setCharacterSize(50);
-	Level.setString("Level: 5"); //mac dinh lv5
+	Level.setString("Level: 1"); //mac dinh lv1
 
 	//thong bao mode
 	sf::Text Mode;
@@ -44,7 +45,7 @@ int main() {
 	std::string mainMenu[3];
 	mainMenu[0] = "Play";
 	mainMenu[1] = "Option";
-	mainMenu[2] = "Exit";
+	mainMenu[2] = "High Score";
 	Menu mainScreen(900, 900, mainMenu, 3); //truyen 3 lua chon
 
 	while (window.isOpen()) {
@@ -73,14 +74,24 @@ int main() {
 						playing = true;
 						break;
 					case 1:
-						changeSetting(window, event, Level, defaultSpeed, ballSpeed, padSpeed, speed, history, Mode);
+						changeSetting(window, event, Level, defaultSpeed, ballSpeed, padSpeed, level, history, Mode);
 						//cap nhat gia tri speed, mode
 						break;
-					case 2:
+					/*case 2:
 						window.close();
 						exit(0);
+						break;*/
+					case 2:
+						bool achievement = true;
+						Name achievement_board;
+						achievement_board.drawAchievementBoard(window, achievement);
 						break;
+
 					}
+					break;
+				case sf::Keyboard::Escape:
+					window.close();
+					exit(0);
 					break;
 				}
 				break;
@@ -91,7 +102,7 @@ int main() {
 			}
 		}
 		//truyen vao speed, mode de choi game
-		gamePlay(window, font, padSpeed, ballSpeed, defaultSpeed, playing, history);
+		gamePlay(window, font, padSpeed, ballSpeed, defaultSpeed, level, playing, history);
 
 		window.clear(sf::Color(20, 20, 20));
 		mainScreen.drawTo(window);

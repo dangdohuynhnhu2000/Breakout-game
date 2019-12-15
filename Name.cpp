@@ -221,6 +221,7 @@ void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 	tmp.setCharacterSize(140);
 	tmp.setPosition(120, 80);
 	tmp.setFont(highscore);
+	tmp.setFillColor(Color(249, 220, 13));
 	achievement.push_back(tmp);
 	
 	font.loadFromFile("sketchy.ttf");
@@ -231,6 +232,7 @@ void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 		tmp.setCharacterSize(50);
 		tmp.setPosition(posx, posy);
 		tmp.setFont(font);
+		tmp.setFillColor(Color::White);
 		achievement.push_back(tmp);
 		tmp.setString(to_string(board[i].score));
 		tmp.setCharacterSize(50);

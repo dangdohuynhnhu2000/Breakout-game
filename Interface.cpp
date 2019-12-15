@@ -14,7 +14,7 @@ void drawToWindow(sf::RenderWindow& window, Paddle paddle1, Ball ball, Wall wall
 	ball.drawTo(window);
 }
 //thay doi speed
-void changeSpeed(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, int& speed, Menu optionScreen) {
+void changeLevel(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, int& level, Menu optionScreen) {
 	switch (event.type) {
 	case sf::Event::Closed:
 		window.close();
@@ -28,21 +28,21 @@ void changeSpeed(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, in
 			break;
 			//left, right de thay doi toc do
 		case sf::Keyboard::Right:
-			speed++;//tang spedd len neu lon hon 10 thi tro ve 1
-			if (speed == 11) {
-				speed = 1;
+			level++;//tang level len neu lon hon 4 thi tro ve 1
+			if (level == 5) {
+				level = 1;
 			}
 			break;
 		case sf::Keyboard::Left:
-			speed--;//giam speed lai, neu be hon 1 thi tro ve 10
-			if (speed == 0) {
-				speed = 10;
+			level--;//giam level lai, neu be hon 1 thi tro ve 4
+			if (level == 0) {
+				level = 4;
 			}
 			break;
 		}
 		break;
 	}
-	Level.setString("Level: " + std::to_string(speed));//cap nhat thong bao level
+	Level.setString("Level: " + std::to_string(level));//cap nhat thong bao level
 }
 //doi mode
 void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, bool& history, sf::Text& Mode) {
@@ -77,11 +77,11 @@ void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, b
 	}
 }
 // menu thay doi speed, level cho game
-void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, float &defaultSpeed, float &ballSpeed, float &padSpeed, int &speed, bool & history, sf::Text &Mode) {
+void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, float &defaultSpeed, float &ballSpeed, float &padSpeed, int &level, bool & history, sf::Text &Mode) {
 	//optionmenu
 	std::string optionMenu[4];
 	optionMenu[0] = "Select Mode";
-	optionMenu[1] = "Speed Level";
+	optionMenu[1] = "Level Game";
 	optionMenu[2] = "Return";
 	Menu optionScreen(900, 900, optionMenu, 3);//tao 3 dong gia tri
 	bool exitOption = false;
@@ -122,11 +122,8 @@ void changeSetting(sf::RenderWindow &window, sf::Event &event, sf::Text &Level, 
 			{
 				Level.setFillColor(sf::Color::Yellow);
 				Mode.setFillColor(sf::Color::Color(185, 175, 120));
-				changeSpeed(window, event, Level, speed, optionScreen);
+				changeLevel(window, event, Level, level, optionScreen);
 
-				defaultSpeed = (0.36 + 1.0 * speed / 20);
-				padSpeed = defaultSpeed ;
-				ballSpeed = defaultSpeed;
 				break;
 			}
 			//gia tri 0 tuong ung mode

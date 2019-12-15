@@ -1,10 +1,9 @@
 #include "Header.h"
 #include "Name.h"
-void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float ballSpeed, float defaultSpeed, bool& playing, bool history) {
+void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float ballSpeed, float defaultSpeed, int level, bool& playing, bool history) {
 	
 	if (playing == true )
 	{
-		int level = 1;
 		string player_name = "";
 		Grid grid;
 		
@@ -129,7 +128,21 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 		{
 			Name name;
 			player_name = name.fillName(window);
-			grid.Level1();
+			switch (level)
+			{
+			case 1:
+				grid.Level1();
+				break;
+			case 2:
+				grid.Level2();
+				break;
+			case 3:
+				grid.Level3();
+				break;
+			case 4:
+				grid.Level4();
+				break;
+			}
 		}
 		else
 		{
@@ -391,7 +404,7 @@ void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float bal
 			grid.hitBullet(gun, paddle1);
 
 			window.display();
-			if (life == 0)
+			if (life == 0 || level ==5)
 			{
 				Name achievement_write;
 				achievement_write.writeToFile(player_name, paddle1.getScore());
