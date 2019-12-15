@@ -4,6 +4,7 @@
 
 void Rectangle::setBrick(float startX, float startY, float a, float b, int stt)
 {
+	// cai dat vat the cho gach
 	position.x = startX;
 	position.y = startY;
 	width = a;
@@ -15,6 +16,7 @@ void Rectangle::setBrick(float startX, float startY, float a, float b, int stt)
 
 void Rectangle::setTexture(string textureName)
 {
+	// cai dat hinh anh cho gach
 	texture.loadFromFile(textureName);
 	shape.setTexture(&texture);
 }
@@ -31,17 +33,19 @@ Vector2f Rectangle::getPositionxy()
 
 int Rectangle::getStatus()
 {
-	return status;
+	return status; // tra ve trang thai dang ton tai
 }
 
 void Rectangle::setPosition(float newPosx, float newPosy)
 {
+	// cai dat vi tri
 	position.x = newPosx;
 	position.y = newPosy;
 }
 
 void Rectangle::setNumber(int num)
 {
+	// cai dat co so
 	float x, y;
 	number = num;
 	font.loadFromFile("iCielPanton-Black.otf");
@@ -112,14 +116,21 @@ void Rectangle::draw(Paddle &paddle, RenderWindow& window)
 
 void Rectangle::moveLeftAndRight(float vx)
 {
+	// di chuyen gach theo huong cu the
 	position.x += vx;
 	shape.setPosition(position);
 }
 
 void Rectangle::moveDown(float vy)
 {
+	// di chuyen xuong
 	position.y += vy;
 	shape.setPosition(position);
+
+	float x, y;
+	x = (width / 2 + getPosition().left) - (text.getGlobalBounds().width / 2);
+	y = (height / 2.5 + getPosition().top) - (text.getGlobalBounds().height / 2);
+	text.setPosition({ x,y });
 }
 
 bool Rectangle::reflex(Ball& ball, float& vx, float& vy, Paddle & paddle)

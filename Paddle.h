@@ -38,6 +38,6 @@ public:
 
 	void turnGunMode(bool shootMode); // bat tat che do ban sung
 
-	void autoMove(float vx);
+	void autoMove(float vx); // tu dong di chuyen
 };
 

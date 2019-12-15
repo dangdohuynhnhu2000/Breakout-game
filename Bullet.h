@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 #include "Paddle.h"
-
+// class vien dan
 class Bullet
 {
 private:
@@ -15,18 +15,18 @@ public:
 	//-2: bien mat vinh vien khoi man hinh
 	Bullet(Texture& texture);
 
-	FloatRect getPosition();
+	FloatRect getPosition(); // tra ve vi tri cua vien dan
 
-	void Shoot(Paddle& paddle, Clock& bulletClock);
+	void Shoot(Paddle& paddle, Clock& bulletClock); // ban sung
 
-	void moveUp(float a, float b);
+	void moveUp(float a, float b); // vien dan di chuyen len
 
-	void draw(RenderWindow& window);
+	void draw(RenderWindow& window); // ve vien dan 
 
-	void setStatus(int status);
+	void setStatus(int status); // cai dat thuoc tinh status cho vien dan
 
-	int getStatus();
+	int getStatus(); // lay gia tri status cua vien dan
 
-	void setPosition(float x, float y);
+	void setPosition(float x, float y); // thiet lap vi tri cho vien dan (dung trong save game)
 
 };

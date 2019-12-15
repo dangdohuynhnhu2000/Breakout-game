@@ -27,9 +27,9 @@ using namespace sf;
 
 void defaultPos(Paddle& paddle1, Ball& ball); //dua ban do, bong ve vi tri mac dinh
 void drawToWindow(sf::RenderWindow& window, Paddle paddle1, Ball ball, Wall wall, sf::Text Exit); //thao tac ve bang tuong bong
-void changeLevel(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, int& level, Menu); //tang giam toc do
+void changeLevel(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, int& level, Menu); //thay doi level choi
 void changeSetting(sf::RenderWindow& window, sf::Event& event, sf::Text& Level, float& defaulSpeed, float& ballSpeed, float& padSpeed, int& level, bool& history, sf::Text & Mode); //thay doi mode, speed
-void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, bool& AImode, sf::Text &Mode); //doi che do 1 player hoac 2 player
+void changeMode(sf::RenderWindow& window, sf::Event& event, Menu optionScreen, bool& AImode, sf::Text &Mode); //doi che do choi moi hoac choi lai game cu
 void gamePlay(sf::RenderWindow& window, sf::Font font, float padSpeed, float ballSpeed, float defaultSpeed,int level, bool& playing, bool AIMode); //thuc hien cac hoat dong cua game
 void result(int scoreLeft, int scoreRight, sf::Text& Result); //thống kê điểm
 

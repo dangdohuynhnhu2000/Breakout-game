@@ -4,7 +4,7 @@ void Grid::draw(Paddle &paddle, RenderWindow& window)
 {
 	for (int i = 0; i < shape.size(); i++)
 	{
-		shape[i]->draw(paddle, window);
+		shape[i]->draw(paddle, window); // ve tung vien gach len man hinh
 	}
 }
 
@@ -1323,55 +1323,61 @@ void Grid::Level4()
 	}
 }
 
-void Grid::moveLeftAndRight(float &vx, int windowWidth)
+void Grid::moveLeftAndRight(float &vx, int windowWidth)  //dich chuyen trong level 2
 {
-	for (int i = 0; i < shape.size(); i++)
+	if (level == 2)
 	{
-		shape[i]->moveLeftAndRight(vx);
-	}
-
-	Vector2f position2 = shape[shape.size() - 1]->getPositionxy();
-	Vector2f position1 = shape[0]->getPositionxy();
-	if (position1.x < -100 || position2.x >windowWidth + 100)
-	{
-		vx = -vx;
-		if (fabs(vx) < 3)
+		for (int i = 0; i < shape.size(); i++)
 		{
-			vx = vx * 1.02;
-			cout << vx << endl;
+			shape[i]->moveLeftAndRight(vx); // tung vien gach dich chuyen
 		}
-		     
+
+		Vector2f position2 = shape[shape.size() - 1]->getPositionxy();
+		Vector2f position1 = shape[0]->getPositionxy();
+		if (position1.x < 50 || position2.x >windowWidth -100) // xet khong gian di chuyen
+		{	
+			vx = -vx;
+			if (fabs(vx) < 3)
+			{
+				vx = vx * 1.02;
+			}
+
+		}
 	}
+	
 }
 
-void Grid::moveDown(float& vy, int windowHeight)
+void Grid::moveDown(float vy, int windowHeight)
 {
-	for (int i = 0; i < shape.size(); i++)
+	if (level == 3) // chi thuc hien khi level 3
 	{
-		shape[i]->moveDown(vy);
+		for (int i = 0; i < shape.size(); i++)
+		{
+			shape[i]->moveDown(vy);
+		}
 	}
 }
 
 bool Grid::Reflex(Ball& ball, float& vx, float& vy, Paddle & paddle)
 {
-	if (ball.getGlobalBounds().top < 400)
+	if (ball.getGlobalBounds().top < 400 || level ==3) // gioi han khong gian chay vong lap de thuc hien nhanh hon
 	{
 		vector <Brick*> ::iterator it;
-		for (it = shape.begin(); it != shape.end(); it++)
+		for (it = shape.begin(); it != shape.end(); it++) // duyet tung vien gach
 		{
-			if ((*it)->getStatus() != -1)
+			if ((*it)->getStatus() != -1) // chi xet khi status =-1
 			{
-				bool collision = false;
-				collision = (*it)->reflex(ball, vx, vy, paddle);
+				bool collision = false; // bien va cham 
+				collision = (*it)->reflex(ball, vx, vy, paddle); // kiem tra xem co va cham khong
 				if (collision)
 				{
-					if ((*it)->getStatus() == 0)
+					if ((*it)->getStatus() == 0)  // kiem tra xem trang thai cua vien gach
 					{
-						if ((*it)->getNumber() == 0)
+						if ((*it)->getNumber() == 0) // kiem tra co so cua vien gach
 						{
-							(*it)->setStatus(-1);
+							(*it)->setStatus(-1); // cai dat lai trang thai cua vien gach
 						}
-						paddle.setScore(paddle.getScore() + 1);
+						paddle.setScore(paddle.getScore() + 1); // tinh diem cho paddle
 					}
 					return true;
 				}
@@ -1385,15 +1391,15 @@ bool Grid::Reflex(Ball& ball, float& vx, float& vy, Paddle & paddle)
 
 vector <Brick*> Grid::getShape()
 {
-	return shape;
+	return shape;// dung trong save game
 }
 
 int Grid::getlevel()
 {
-	return level;
+	return level; // tra ve level hien tai
 }
 
-void Grid::hitBullet(GunMode& gun, Paddle & paddle)
+void Grid::hitBullet(GunMode& gun, Paddle & paddle) // vien dam cham gach
 {
 	for (int i = 0; i < gun.bulletList.size(); i++)
 	{
@@ -1403,23 +1409,23 @@ void Grid::hitBullet(GunMode& gun, Paddle & paddle)
 			if ((*it)->getStatus() == 0)
 			{
 				bool collision = false;
-				collision = (*it)->isHitBullet(gun.bulletList[i]);
-				if (collision)
+				collision = (*it)->isHitBullet(gun.bulletList[i]); // dieu kien va cham
+				if (collision) 
 				{
 					
-					if ((*it)->getNumber() == 0)
+					if ((*it)->getNumber() == 0) // gach binh thuong
 					{
 						(*it)->setStatus(-1);
 					}
 					else
 					{
-						(*it)->changeNumber((*it)->getNumber() - 1);
+						(*it)->changeNumber((*it)->getNumber() - 1); // gach co co so trong lvel 3
 						if ((*it)->getNumber() == 0)
 						{
-							(*it)->setStatus(-1);
+							(*it)->setStatus(-1); // dat lai trang thai
 						}
 					}
-					paddle.setScore(paddle.getScore() + 1);
+					paddle.setScore(paddle.getScore() + 1); // tinh diem
 				}
 			}
 
@@ -1427,10 +1433,10 @@ void Grid::hitBullet(GunMode& gun, Paddle & paddle)
 	}
 }
 
-int Grid::getRemainAmount( float y)
+int Grid::getRemainAmount( float y) // tra ve so luong gach con lai
 {
 	
-	if (y <= 400)
+	if (y <= 400 || level==3)
 	{
 		int count = 0;
 		for (int i = 0; i < shape.size();i++)
@@ -1454,12 +1460,13 @@ void Grid::setStatus(vector <int> status)
 {
 	for (int i = 0;i < shape.size();i++)
 	{
-		shape[i]->setStatus(status[i]);
+		shape[i]->setStatus(status[i]); // thiet lap status cho toan bo gach (dung trong save)
 	}
 }
 
 void Grid::setStatusItem(vector <float> item_x, vector <float> item_y, vector <int> item_status)
-{
+{ 
+	// thiet lap status cho toan bo item
 	for (int i = 0;i < shape.size(); i++)
 	{
 		shape[i]->setStatusForItem(item_status[i]);
@@ -1469,6 +1476,7 @@ void Grid::setStatusItem(vector <float> item_x, vector <float> item_y, vector <i
 
 void Grid::setNumber(vector <int> list_num)
 {
+	// thiet lap co so cho toan bo gach
 	for (int i = 0;i < shape.size(); i++)
 	{
 		shape[i]->setNumber(list_num[i]);

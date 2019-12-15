@@ -45,7 +45,7 @@ void SaveGame::saveGameOutFile(int score, string name, float vx, float vy, float
 	status.item_y[shape.size()]= 0; // dau hieu de ket thuc mang
 	status.block_number[shape.size()] = -100;// dau hieu de ket thuc mang
 
-	if (paddle1.isOnGunMode == true)
+	if (paddle1.isOnGunMode == true) 
 	{
 		status.gunMode = 1;
 	}
@@ -65,12 +65,12 @@ void SaveGame::saveGameOutFile(int score, string name, float vx, float vy, float
 		}
 		status.bullet_status[i] = gun.bulletList[i].getStatus();
 	}
-	if (count_bullet_status != 0)
+	if (count_bullet_status != 0) // de khi thuc hien chuc nang  history co the thuc hien duoc
 	{
 		status.gunMode = 1;
 	} 
 
-	for (int i = 0;i < 5;i++)
+	for (int i = 0;i < 5;i++) //vi tri cua vien dan
 	{
 		status.bullet_x[i] = gun.bulletList[i].getPosition().left;
 		status.bullet_y[i] = gun.bulletList[i].getPosition().top;
@@ -124,6 +124,7 @@ void SaveGame:: readSaveGame(float &vx, float &vy,Ball &ball, Paddle &paddle1, G
 	vector <float> list_item_x;
 	vector <float > list_item_y;
 	
+	// luu tu mang ra vector
 	for (int i = 0;i < 150;i++)
 	{
 		if (status.block_status[i] != -100)
@@ -139,6 +140,7 @@ void SaveGame:: readSaveGame(float &vx, float &vy,Ball &ball, Paddle &paddle1, G
 			break;
 		}
 	}
+	// thiet lap lai gach
 	grid.setStatus(list_brick_status);
 	grid.setStatusItem(list_item_x, list_item_y, list_item_status);
 	grid.setNumber(list_brick_number);
@@ -152,15 +154,13 @@ void SaveGame:: readSaveGame(float &vx, float &vy,Ball &ball, Paddle &paddle1, G
 		paddle1.isOnGunMode = false;
 	}
 		
-	cout << status.gunMode <<  endl;
+	// thiet lap lai gunmode
 	for (int i = 0;i < 5;i++)
 	{
 		gun.bulletList[i].setStatus(status.bullet_status[i]);
-		cout<< gun.bulletList[i].getStatus() <<" " << status.bullet_status[i] << endl;
 	}
 
 	gun.setNextBullet(status.nextBullet);
-	cout << gun.getNextBullet() << " " << status.nextBullet << endl;
 
 	for (int i = 0; i < 5;i++)
 	{

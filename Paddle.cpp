@@ -137,6 +137,7 @@ void Paddle::setScore(int newScore)
 
 int Paddle::getScore()
 {
+	
 	return score;
 }
 

@@ -28,12 +28,13 @@ public:
 	
 	int getNumOfElements(); // lay so luong gach
 
-	void moveLeftAndRight(float &vx, int windowWidth);
+	void moveLeftAndRight(float &vx, int windowWidth); // dich chuyen gach qua lai khi o level 2
 
-	void moveDown(float& vy, int windowHeight);
+	void moveDown(float vy, int windowHeight); // dich chuyen gach xuong khi o level 3
 
 	bool Reflex(Ball& ball, float& vx, float& vy, Paddle & paddle); // chay vong lap de phan xa bong
 
+	// tinh diem khi va cham item
 	void draw(Paddle &paddle, RenderWindow& window); // ve toan bo gach
 
 	vector <Brick*> getShape(); // lay toan bo gach
@@ -48,9 +49,9 @@ public:
 
 	void setStatus(vector <int>); // thiet lap status cho tat ca gach (su dung trong save game)
 
-	void setStatusItem(vector <float> item_x, vector <float> itm_y, vector <int> item_status);
+	void setStatusItem(vector <float> item_x, vector <float> itm_y, vector <int> item_status); // thiet lap status cho toan bo gach (dung trong save game)
 
-	void setNumber(vector <int> list_num);
+	void setNumber(vector <int> list_num); // thiet lap co so cho toan bo gach (dung trong save game)
 
 };
 

@@ -12,7 +12,7 @@ struct achievement
 	string player_name;
 	int score;
 };
-
+// class thuc thi toan bo nhung chuong trinh lien quan den ten nguoi choi (bao game nhap ten va in bang thanh tich)
 class Name
 {
 	RectangleShape box;
@@ -36,11 +36,11 @@ public:
 
 	void writeToFile(string name, int score); // viet vao file
 
-	void readFromFile();
+	void readFromFile(); // doc bang xep hang tu file
 
-	void changeTheBoard(achievement tmp);
+	void changeTheBoard(achievement tmp); // thay doi bang xep  hang
 
-	void drawAchievementBoard(RenderWindow & window, bool & playing);
+	void drawAchievementBoard(RenderWindow & window, bool & playing); // ve bang xep hang len man hinh
 
 };
 

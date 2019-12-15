@@ -24,15 +24,7 @@ public:
 
 	float getRad(); //lay ban kinh
 
-	void setVx(float vx);
+	FloatRect getPosition(); // lay vi tri cua trai bong
 
-	void setVy(float vy);
-
-	float getVx();
-
-	float getVy();
-
-	FloatRect getPosition();
-
-	FloatRect getGlobalBounds();
+	FloatRect getGlobalBounds(); // lay vi tri cua trai bong
 };

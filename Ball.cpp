@@ -32,33 +32,12 @@ float Ball::getRad() {
 }
 
 
-
-void Ball :: setVx(float vx)
-{
-	this->vx = vx;
-}
-
-void Ball::setVy(float vy)
-{
-	this->vy = vy;
-}
-
-float Ball :: getVx()
-{
-	return vx;
-}
-
-float Ball :: getVy()
-{
-	return vy;
-}
-
 FloatRect Ball::getPosition()
 {
-	return ball.getGlobalBounds();
+	return ball.getGlobalBounds(); // lay vi tri cua ball
 }
 
 FloatRect Ball::getGlobalBounds()
 {
-	return ball.getGlobalBounds();
+	return ball.getGlobalBounds(); // lay vi tri cua ball
 }

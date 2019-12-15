@@ -8,7 +8,8 @@ GunMode::GunMode()
 }
 
 void GunMode::setAmountOfBullets(int n)
-{
+{ 
+	// cai dat so luong dan toi da
 	totalBullets = n;
 	Bullet bullet(texture);
 	for (int i = 0; i < totalBullets; i++)
@@ -19,6 +20,7 @@ void GunMode::setAmountOfBullets(int n)
 
 void GunMode::resetBulletList()
 {
+	// reset lai (sau khi ban xong)
 	nextBullet = 0;
 	for (int i = 0; i < totalBullets; i++)
 	{
@@ -27,7 +29,8 @@ void GunMode::resetBulletList()
 }
 
 void GunMode::updateNextBullet()
-{
+{ 
+	// cap nhat vien dan ban ke tiep
 	if (nextBullet < totalBullets - 1)
 	{
 		nextBullet += 1;
@@ -86,9 +89,10 @@ void GunMode::drawBullets(RenderWindow& window)
 
 void GunMode::turnOnGunMode(RenderWindow& window, Paddle& paddle)
 {
-	drawBullets(window);
-	shootMode(paddle);
-	moveBullets();
+	// bat che de ban sung
+	drawBullets(window); // ve ra man hinh
+	shootMode(paddle); // ban sung
+	moveBullets();// di chuyen dam
 	if (paddle.canShoot == false)
 	{
 		checkBulletClock(paddle);

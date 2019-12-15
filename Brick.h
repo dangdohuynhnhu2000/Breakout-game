@@ -56,11 +56,11 @@ public:
 
 	virtual void changeNumber(int num)=0; // thay doi co so
 
-	virtual Item getItem() = 0;
+	virtual Item getItem() = 0; // tra ve vat pham cua gach
 
-	virtual void setStatusForItem(int status);
+	virtual void setStatusForItem(int status); // cat dat thuoc tinh cho vat pham (dung trong save game)
 
-	virtual void setPositionForItem(Vector2f pos);
+	virtual void setPositionForItem(Vector2f pos); // cai dat vi tri cho vat pham (dung trong save game)
 
 };
 

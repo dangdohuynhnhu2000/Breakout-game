@@ -3,7 +3,7 @@
 using namespace sf;
 #include "Paddle.h"
 #include "Bullet.h"
-
+// che do ban sung
 class GunMode
 {
 private:
@@ -15,26 +15,26 @@ private:
 public:
 	vector <Bullet> bulletList;
 	GunMode();
-	void setAmountOfBullets(int n);
+	void setAmountOfBullets(int n); // thiet lap tong so dan ban ra
 
-	void checkBulletClock(Paddle & paddle);
+	void checkBulletClock(Paddle & paddle); 
 
 	void updateNextBullet();//cap nhat nextBullet
 
-	void moveBullets();
+	void moveBullets(); // di chuyeen vien dan (huong len)
 
-	void shootMode(Paddle& paddle);
+	void shootMode(Paddle& paddle); // che do ban
 
-	void drawBullets(RenderWindow& window);
+	void drawBullets(RenderWindow& window); // ve toan bo dan
 
-	void turnOnGunMode(RenderWindow& window, Paddle& paddle);
+	void turnOnGunMode(RenderWindow& window, Paddle& paddle); // bat che do ban sung len
 
-	void turnOffGunMode(Paddle & paddle);
+	void turnOffGunMode(Paddle & paddle);// tat che do ban sung
 
-	void resetBulletList();
+	void resetBulletList(); // thiet lap lai sau khi ban dan xong
 
-	int getNextBullet();
+	int getNextBullet(); // tra ve vien dan chuan bi duoc ban (dung trong save Game)
 
-	void setNextBullet(int next);
+	void setNextBullet(int next); // cai dat vien dan chuan bi duoc ban (dung trong save Game)
 
 };

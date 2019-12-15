@@ -206,7 +206,7 @@ void Name::changeTheBoard(achievement tmp) // vector da duoc sap xep giam dan
 
 void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 {
-	readFromFile();
+	readFromFile(); // doc du lieu tu file
 	vector <Text> achievement;
 	int posx = 220;
 	int posy = 300;
@@ -215,6 +215,7 @@ void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 
 	Font font;
 
+	// ve chu high score
 	Font highscore;
 	highscore.loadFromFile("Karate.ttf");
 	tmp.setString("High Score");
@@ -226,6 +227,7 @@ void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 	
 	font.loadFromFile("sketchy.ttf");
 
+	// thiet lap thanh tich tung nguoi
 	for (int i = 0; i < board.size(); i++)
 	{
 		tmp.setString(board[i].player_name);
@@ -266,6 +268,8 @@ void Name::drawAchievementBoard(RenderWindow & window, bool & playing)
 			}
 		}
 		window.clear(sf::Color(20, 20, 20));
+
+		// ve thanh tich tung nguoi
 		for (int i = 0; i < achievement.size();i++)
 		{
 			window.draw(achievement[i]);
